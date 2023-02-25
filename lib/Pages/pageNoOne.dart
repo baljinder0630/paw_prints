@@ -28,39 +28,6 @@ class _PageZeroState extends State<PageNoOne> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                margin: EdgeInsets.only(top: 10.0),
-                width: double.infinity,
-                child: CarouselSlider(
-                  items: [
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet1.jpg", fit: BoxFit.cover),
-                    ),
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet2.png", fit: BoxFit.cover),
-                    ),
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet3.jpg", fit: BoxFit.cover),
-                    ),
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet4.jpg", fit: BoxFit.cover),
-                    ),
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet5.jpg", fit: BoxFit.cover),
-                    ),
-                  ],
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    enlargeCenterPage: true,
-                    // aspectRatio: 2.0,
-                  ),
-                ),
-              ),
               StreamBuilder<QuerySnapshot>(
                 stream:
                     FirebaseFirestore.instance.collection("Pets").snapshots(),
