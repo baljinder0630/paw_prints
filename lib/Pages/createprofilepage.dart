@@ -51,20 +51,6 @@ class _CreateProfileState extends State<CreateProfile> {
           CropAspectRatioPreset.ratio4x3,
           CropAspectRatioPreset.ratio16x9
         ],
-        // androidUiSettings : [
-        //   AndroidUiSettings(
-        //       toolbarTitle: 'Cropper',
-        //       toolbarColor: Colors.deepOrange,
-        //       toolbarWidgetColor: Colors.white,
-        //       initAspectRatio: CropAspectRatioPreset.original,
-        //       lockAspectRatio: false),
-        //   IOSUiSettings(
-        //     title: 'Cropper',
-        //   ),
-        //   WebUiSettings(
-        //     context: context,
-        //   ),
-        // ],
       );
       setState(() {
         UserFinalImage = FinalImage;
