@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
+import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/createprofilepage.dart';
 
 import 'loginpage.dart';
@@ -65,12 +66,15 @@ class _SignUpState extends State<SignUp> {
           email: emailcontroller.text.toString(),
           username: '',
           avatar: '');
+
       await FirebaseFirestore.instance
           .collection("User")
           .doc(uid)
           .set(newuser.toMap())
           .then((value) {
         log("New User Created");
+      }).then((value) {
+        FirebaseHelper.currentAppUser = newuser;
       });
       Navigator.pushReplacement(
         context,
@@ -293,7 +297,6 @@ class _SignUpState extends State<SignUp> {
                             child: Text("Login"))
                       ],
                     ),
-
                     SizedBox(
                       height: 10,
                     ),
@@ -302,31 +305,29 @@ class _SignUpState extends State<SignUp> {
                         Padding(padding: EdgeInsets.symmetric(horizontal: 45)),
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow:[
-                              BoxShadow(
-                                blurRadius: 40,
-                                blurStyle: BlurStyle.outer,
-                              )
-                            ]
-                          ),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  blurStyle: BlurStyle.outer,
+                                )
+                              ]),
                           child: IconButton(
                             icon: Image.asset('assets/google.png'),
                             iconSize: 30,
                             onPressed: () {},
                           ),
                         ),
-                          Padding(padding: EdgeInsets.only(left: 20)),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow:[
-                                  BoxShadow(
-                                    blurRadius: 40,
-                                    blurStyle: BlurStyle.outer,
-                                  )
-                                ]
-                            ),
+                        Padding(padding: EdgeInsets.only(left: 20)),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  blurStyle: BlurStyle.outer,
+                                )
+                              ]),
                           child: IconButton(
                             icon: Image.asset('assets/apple1.jpeg'),
                             iconSize: 30,
@@ -334,26 +335,23 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         Padding(padding: EdgeInsets.only(left: 20)),
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow:[
-                                  BoxShadow(
-                                    blurRadius: 40,
-                                    blurStyle: BlurStyle.outer,
-                                  )
-                                ]
-                            ),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  blurStyle: BlurStyle.outer,
+                                )
+                              ]),
                           child: IconButton(
                             icon: Image.asset('assets/facebook.png'),
                             iconSize: 30,
                             onPressed: () {},
                           ),
                         ),
-
                       ],
                     )
-
                   ],
                 ),
               )),
