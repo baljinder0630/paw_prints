@@ -8,7 +8,6 @@ class ProfilePage extends StatefulWidget {
   UserModel userModel;
 
   ProfilePage({required this.userModel, Key? key}) : super(key: key);
-
   @override
   State<ProfilePage> createState() => _PageTwoState();
 }
