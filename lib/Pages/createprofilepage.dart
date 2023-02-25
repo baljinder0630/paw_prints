@@ -185,12 +185,12 @@ class _CreateProfileState extends State<CreateProfile> {
                   prefixIcon: Icon(Icons.person),
                   hintText: "UserName",
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Colors.black,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(80.0),
                       ),
-                      borderSide: BorderSide(color: Colors.teal)),
+                      borderSide: BorderSide(color: Colors.amber)),
                 ),
               ),
               SizedBox(
@@ -209,14 +209,18 @@ class _CreateProfileState extends State<CreateProfile> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: Text("Add Profile Picture"),
+                            title: Text("Add Profile Picture",
+                              style: TextStyle(color: Colors.black)
+                            ),
                             actions: [
                               Card(
                                 child: TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text("Ok"),
+                                  child: Text("Ok",
+                                    style: TextStyle(color: Colors.black)
+                                  ),
                                 ),
                               )
                             ],
@@ -227,14 +231,19 @@ class _CreateProfileState extends State<CreateProfile> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: Text("Enter UserName"),
+                            title: Text("Enter UserName",
+                              style: TextStyle(color: Colors.black),
+                            ),
                             actions: [
                               Card(
+
                                 child: TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text("Ok"),
+                                  child: Text("Ok",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
                                 ),
                               )
                             ],
@@ -247,6 +256,16 @@ class _CreateProfileState extends State<CreateProfile> {
                   height: 40,
                   width: 100,
                   decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Colors.amber.shade800,
+                        Colors.amber.shade700,
+                        Colors.amber.shade600,
+                        Colors.amber.shade500
+                      ]
+                    ),
                     borderRadius: BorderRadius.circular(12),
                     color: Color(0xFF21899C),
                   ),
