@@ -90,7 +90,7 @@ class _LoginPage extends State<LoginPage> {
                     Text(
                       """Login""",
                       style: TextStyle(
-                          color: Color(0xFF21899C),
+                          color: Theme.of(context).primaryColor,
                           fontSize: 45,
                           fontWeight: FontWeight.bold),
                     ),
@@ -123,7 +123,7 @@ class _LoginPage extends State<LoginPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
                                 ),
-                                borderSide: BorderSide(color: Colors.teal)),
+                                borderSide: BorderSide(color: Theme.of(context).primaryColor)),
                           ),
                         )),
                     SizedBox(
@@ -164,7 +164,7 @@ class _LoginPage extends State<LoginPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
                                 ),
-                                borderSide: BorderSide(color: Colors.teal)),
+                                borderSide: BorderSide(color: Theme.of(context).primaryColor)),
                           ),
                         )),
                     SizedBox(
@@ -188,7 +188,7 @@ class _LoginPage extends State<LoginPage> {
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            color: Color(0xFF21899C),
+                            color: Theme.of(context).primaryColor,
                           ),
                           child: Center(
                               child: Text(
