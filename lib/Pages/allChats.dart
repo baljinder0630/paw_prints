@@ -22,13 +22,14 @@ class _MyHomePageState extends State<AllChats> {
   String currentUser = FirebaseAuth.instance.currentUser!.uid;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
 
         //
         //
         //
-        body: SafeArea(
-      child: Container(
+        Container(
+      child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: StreamBuilder(
             //stream will return snapshot
             stream: FirebaseFirestore.instance
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<AllChats> {
 
                   return ListView.builder(
                       shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: querySnapshot.docs.length,
                       itemBuilder: (BuildContext context, int index) {
                         Chatroommodel chatroommodel = Chatroommodel.fromMap(
@@ -142,6 +144,6 @@ class _MyHomePageState extends State<AllChats> {
               return CircularProgressIndicator();
             }),
       ),
-    ));
+    );
   }
 }
