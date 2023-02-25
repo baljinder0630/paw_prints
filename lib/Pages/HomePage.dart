@@ -21,65 +21,70 @@ class _MyHomePageState extends State<MyHomePage> {
   var _bottomNavIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Restart.restartApp();
-                // runApp(Phoenix(child: MyApp()));
+    return StreamBuilder<int>(
+        stream: navBarStream.stream,
+        builder: (context, snapshot) {
+          return Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              actions: [
+                IconButton(
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
+                      Navigator.popUntil(context, (route) => route.isFirst);
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return MyApp();
+                      }));
+                    },
+                    icon: Icon(Icons.logout))
+              ],
+              title: Text("Paw Prints"),
+            ),
+
+            //
+            //
+            floatingActionButton: FloatingActionButton(
+              tooltip: "Want to donate Pet?",
+              backgroundColor: Color.fromARGB(255, 236, 219, 67),
+              onPressed: (() {}),
+              child: Icon(Icons.add),
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+
+            //
+            //
+            body: _bottomNavIndex == 0
+                ? PageZero(userModel: FirebaseHelper.currentAppUser)
+                : Container(
+                    child: Text(
+                      _bottomNavIndex.toString(),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+            bottomNavigationBar: AnimatedBottomNavigationBar(
+              activeColor: Color.fromARGB(255, 246, 231, 93),
+              backgroundColor: Color.fromARGB(255, 59, 58, 58),
+              height: 60,
+              icons: [
+                CupertinoIcons.home,
+                CupertinoIcons.paw,
+                CupertinoIcons.settings,
+                CupertinoIcons.profile_circled
+              ],
+              activeIndex: _bottomNavIndex,
+              gapLocation: GapLocation.center,
+              notchSmoothness: NotchSmoothness.verySmoothEdge,
+              leftCornerRadius: 32,
+              rightCornerRadius: 32,
+              onTap: (index) {
+                _bottomNavIndex = index;
+                navBarStream.sink.add(_bottomNavIndex);
+                // navBarStream.sink.add(_bottomNavIndex);
               },
-              icon: Icon(Icons.logout))
-        ],
-        title: Text("Paw Prints"),
-      ),
-
-      //
-      //
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 236, 219, 67),
-        onPressed: (() {}),
-        child: Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-      //
-      //
-      body: StreamBuilder<int>(
-          stream: navBarStream.stream,
-          builder: (context, snapshot) {
-            if (_bottomNavIndex == 0) {
-              return PageZero(userModel: FirebaseHelper.currentAppUser);
-            }
-            return Container(
-              child: Text(
-                _bottomNavIndex.toString(),
-                textAlign: TextAlign.center,
-              ),
-            );
-          }),
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        activeColor: Color.fromARGB(255, 246, 231, 93),
-        backgroundColor: Color.fromARGB(255, 59, 58, 58),
-        height: 60,
-        icons: [
-          CupertinoIcons.home,
-          CupertinoIcons.paw,
-          CupertinoIcons.settings,
-          CupertinoIcons.profile_circled
-        ],
-        activeIndex: _bottomNavIndex,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.verySmoothEdge,
-        leftCornerRadius: 32,
-        rightCornerRadius: 32,
-        onTap: (index) {
-          _bottomNavIndex = index;
-          navBarStream.sink.add(index);
-        },
-      ),
-    );
+            ),
+          );
+        });
   }
 }
