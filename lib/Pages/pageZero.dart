@@ -86,17 +86,17 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
         Row(
           children: [
             IconButton(
-              icon: postModel.likes!.contains(usermodel)
+              icon: postModel.likes!.contains(usermodel.uid)
                   ? Icon(Icons.thumb_up, color: Colors.red)
                   : Icon(Icons.thumb_up_alt_outlined, color: Colors.grey),
               iconSize: 20,
               onPressed: () async {
-                if (postModel.likes!.contains(usermodel)) {
+                if (postModel.likes!.contains(usermodel.uid)) {
                   log("Empty");
-                  postModel.likes!.remove(usermodel);
+                  postModel.likes!.remove(usermodel.uid);
                 } else {
                   log("non Empty");
-                  postModel.likes!.add(usermodel);
+                  postModel.likes!.add(usermodel.uid);
                 }
                 await FirebaseFirestore.instance
                     .collection("posts")
@@ -114,7 +114,11 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
               style: TextStyle(fontSize: 18, color: Colors.black),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PostDetail(postModel: postModel);
+                }));
+              },
               icon: Icon(Icons.insert_comment_rounded),
               color: Colors.grey,
               highlightColor: Colors.transparent,
