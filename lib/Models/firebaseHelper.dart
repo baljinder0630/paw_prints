@@ -3,7 +3,10 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
+import 'package:paw_prints/Pages/Chatroom.dart';
 
 import 'chatroomModel.dart';
 
@@ -21,15 +24,15 @@ class FirebaseHelper {
     return usermodel!;
   }
 
-  // static void Chatroompage(targetuser, chatroommodel, context) {
-  //   Navigator.pop(context);
-  //   Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //     return chatroom (
-  //       TargetUser: targetuser,
-  //       exitingChatModel: chatroommodel,
-  //     );
-  //   }));
-  // }
+  static void Chatroompage(targetuser, chatroommodel, context) {
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return ChatRoom(
+        TargetUser: targetuser,
+        exitingChatModel: chatroommodel,
+      );
+    }));
+  }
 
   // Creating chatroom
   static Future<Chatroommodel?> getchatRoombyId(
@@ -67,7 +70,7 @@ class FirebaseHelper {
           .set(newchatroom.toMap())
           .then((value) => log("ChatRoom Created"))
           .onError((error, stackTrace) => print(error));
-      // Chatroompage (targetUser, newchatroom, context);
+      Chatroompage(targetUser, newchatroom, context);
     }
   }
 }

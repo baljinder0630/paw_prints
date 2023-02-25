@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +8,7 @@ import 'package:paw_prints/Pages/Donation_page.dart';
 import 'package:paw_prints/Pages/PetDetail.dart';
 
 import '../Models/petModel.dart';
+import '';
 
 class PageNoOne extends StatefulWidget {
   UserModel userModel;
@@ -21,14 +20,51 @@ class PageNoOne extends StatefulWidget {
 }
 
 class _PageZeroState extends State<PageNoOne> {
+  String? dropdownValue = 'Dog';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Container(
+        padding: EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          backgroundColor: Colors.amber,
+          tooltip: "Search in nearby location",
+          onPressed: (() {}),
+          child: Icon(Icons.location_searching_rounded),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0, right: 80.0),
+                child: DropdownButton<String>(
+                  alignment: Alignment.center,
+                  isExpanded: true,
+                  value: dropdownValue,
+                  items: <String>['Dog', 'Cat', 'Cow', 'other']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue;
+                    });
+                  },
+                ),
+              ),
               StreamBuilder<QuerySnapshot>(
                 stream:
                     FirebaseFirestore.instance.collection("Pets").snapshots(),
@@ -58,7 +94,9 @@ class _PageZeroState extends State<PageNoOne> {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: ((context) {
-                            return PetDetail(petModel: petModel);
+                            return PetDetail(
+                                userModel: widget.userModel,
+                                petModel: petModel);
                           })));
                         },
                         child: petWidget(context, petModel, widget.userModel),

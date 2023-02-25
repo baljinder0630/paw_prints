@@ -13,8 +13,10 @@ import 'package:uuid/uuid.dart';
 import 'Chatroom.dart';
 
 class PetDetail extends StatefulWidget {
+  UserModel userModel;
   PetModel petModel;
-  PetDetail({required this.petModel, Key? key}) : super(key: key);
+  PetDetail({required this.userModel, required this.petModel, Key? key})
+      : super(key: key);
 
   @override
   State<PetDetail> createState() => _BuyPageState();
@@ -132,7 +134,7 @@ class _BuyPageState extends State<PetDetail> {
                             width: MediaQuery.of(context).size.width / 2,
                             color: Colors.blue,
                             child: Center(
-                                child: Text("Adopt",
+                                child: Text("Buy",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 25,

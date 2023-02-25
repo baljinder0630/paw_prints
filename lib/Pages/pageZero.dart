@@ -26,41 +26,41 @@ class _PageOneState extends State<PageNoZero> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.only(top: 10.0),
-                  width: double.infinity,
-                  child: CarouselSlider(
-                    items: [
-                      Card(
-                        margin: EdgeInsets.all(0.0),
-                        child: Image.asset("assets/Pet1.jpg", fit: BoxFit.cover),
-                      ),
-                      Card(
-                        margin: EdgeInsets.all(0.0),
-                        child: Image.asset("assets/Pet2.png", fit: BoxFit.cover),
-                      ),
-                      Card(
-                        margin: EdgeInsets.all(0.0),
-                        child: Image.asset("assets/Pet3.jpg", fit: BoxFit.cover),
-                      ),
-                      Card(
-                        margin: EdgeInsets.all(0.0),
-                        child: Image.asset("assets/Pet4.jpg", fit: BoxFit.cover),
-                      ),
-                      Card(
-                        margin: EdgeInsets.all(0.0),
-                        child: Image.asset("assets/Pet5.jpg", fit: BoxFit.cover),
-                      ),
-                    ],
-                    options: CarouselOptions(
-                      autoPlay: true,
-                      enlargeCenterPage: true,
+                margin: EdgeInsets.only(top: 10.0),
+                width: double.infinity,
+                child: CarouselSlider(
+                  items: [
+                    Card(
+                      margin: EdgeInsets.all(0.0),
+                      child: Image.asset("assets/Pet1.jpg", fit: BoxFit.cover),
                     ),
+                    Card(
+                      margin: EdgeInsets.all(0.0),
+                      child: Image.asset("assets/Pet2.png", fit: BoxFit.cover),
+                    ),
+                    Card(
+                      margin: EdgeInsets.all(0.0),
+                      child: Image.asset("assets/Pet3.jpg", fit: BoxFit.cover),
+                    ),
+                    Card(
+                      margin: EdgeInsets.all(0.0),
+                      child: Image.asset("assets/Pet4.jpg", fit: BoxFit.cover),
+                    ),
+                    Card(
+                      margin: EdgeInsets.all(0.0),
+                      child: Image.asset("assets/Pet5.jpg", fit: BoxFit.cover),
+                    ),
+                  ],
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    enlargeCenterPage: true,
                   ),
                 ),
+              ),
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('posts')
-                    .orderBy('timeStamp', descending: true)
+                    .orderBy('createdTime', descending: true)
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
@@ -70,14 +70,19 @@ class _PageOneState extends State<PageNoZero> {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
                     }
-                    QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
+                    QuerySnapshot querySnapshot =
+                        snapshot.data as QuerySnapshot;
                     return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
-                        log((querySnapshot.docs[index].data() as Map<String, dynamic>)
+                        log((querySnapshot.docs[index].data()
+                                as Map<String, dynamic>)
                             .toString());
                         PostModel postModel = PostModel.fromMap(
-                            querySnapshot.docs[index].data() as Map<String, dynamic>);
+                            querySnapshot.docs[index].data()
+                                as Map<String, dynamic>);
                         return postWidget(context, postModel, widget.userModel);
                       },
                     );
