@@ -15,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _bottomNavIndex = 0;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -23,7 +23,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
                 Restart.restartApp();
-                // runApp(Phoenix(child: MyApp()));
               },
               icon: Icon(Icons.logout))
         ],
@@ -33,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //
       //
       floatingActionButton: FloatingActionButton(
+        tooltip: "Donate pet",
         backgroundColor: Color.fromARGB(255, 236, 219, 67),
         onPressed: (() {}),
         child: Icon(Icons.add),
