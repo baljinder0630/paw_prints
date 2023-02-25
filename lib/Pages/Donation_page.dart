@@ -40,22 +40,28 @@ class _DonatePetState extends State<DonatePet> {
   void imagecrop(XFile BeforeCrop) async {
     log("message1");
     if (BeforeCrop != null) {
-      File? FinalImage = await ImageCropper().cropImage(
-          sourcePath: BeforeCrop.path,
-          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-          compressQuality: 20,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.square,
-          ],
-          androidUiSettings: AndroidUiSettings(
-              toolbarTitle: 'Cropper',
-              toolbarColor: Colors.deepOrange,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false),
-          iosUiSettings: IOSUiSettings(
-            minimumAspectRatio: 1.0,
-          ));
+      File? FinalImage = await ImageCropper()
+          .cropImage(
+              sourcePath: BeforeCrop.path,
+              aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+              compressQuality: 20,
+              aspectRatioPresets: [
+                CropAspectRatioPreset.square,
+              ],
+              cropStyle: CropStyle.rectangle
+              // androidUiSettings: AndroidUiSettings(
+              //     toolbarTitle: 'Cropper',
+              //     toolbarColor: Colors.deepOrange,
+              //     toolbarWidgetColor: Colors.white,
+              //     initAspectRatio: CropAspectRatioPreset.original,
+              //     lockAspectRatio: false),
+              // iosUiSettings: IOSUiSettings(
+              //   minimumAspectRatio: 1.0,
+              // )
+              )
+          .then((value) {
+            log("Done")
+          });
 
       if (FinalImage != null) {
         setState(() {
@@ -191,11 +197,6 @@ class _DonatePetState extends State<DonatePet> {
                     borderSide: BorderSide(color: Colors.teal)),
               ),
             ),
-            // TextField(
-            //   controller: _petDOB,
-            //   keyboardType: TextInputType.datetime,
-            //   decoration: InputDecoration(hintText: "Pet dob"),
-            // ),
             TextButton(
                 onPressed: () async {
                   DateTime? _selectedDate = await showDatePicker(
@@ -212,7 +213,6 @@ class _DonatePetState extends State<DonatePet> {
                   log(_selectedDate.toString());
                 },
                 child: Text("Pick DOB")),
-
             TextButton(
               child: Text("Location"),
               onPressed: () {

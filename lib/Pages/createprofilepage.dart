@@ -39,27 +39,14 @@ class _CreateProfileState extends State<CreateProfile> {
   void imagecrop(XFile BeforeCrop) async {
     log("message1");
     if (BeforeCrop != null) {
-      File? FinalImage = await ImageCropper().cropImage(
-          sourcePath: BeforeCrop.path,
-          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-          compressQuality: 20
-          // aspectRatioPresets: [
-          //   CropAspectRatioPreset.square,
-          //   CropAspectRatioPreset.ratio3x2,
-          //   CropAspectRatioPreset.original,
-          //   CropAspectRatioPreset.ratio4x3,
-          //   CropAspectRatioPreset.ratio16x9
-          // ],
-          // androidUiSettings: AndroidUiSettings(
-          //     toolbarTitle: 'Cropper',
-          //     toolbarColor: Colors.deepOrange,
-          //     toolbarWidgetColor: Colors.white,
-          //     initAspectRatio: CropAspectRatioPreset.original,
-          //     lockAspectRatio: false),
-          // iosUiSettings: IOSUiSettings(
-          //   minimumAspectRatio: 1.0,
-          // )
-          );
+      File? FinalImage = await ImageCropper()
+          .cropImage(
+              sourcePath: BeforeCrop.path,
+              aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+              compressQuality: 20)
+          .then((value) {
+        log("Done");
+      });
 
       if (FinalImage != null) {
         setState(() {

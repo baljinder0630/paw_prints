@@ -39,7 +39,6 @@ dependencies:
   firebase_storage: ^10.2.10
   firebase_storage_web: ^3.2.11
   image_picker: ^0.8.4+11
-  image_cropper: ^1.5.1
   uuid: ^3.0.6
   firebase_messaging: ^11.2.12
   flutter_local_notifications: ^9.4.0
@@ -51,7 +50,7 @@ dependencies:
   geolocator: ^9.0.2
   geocoding: ^2.0.5
   animated_bottom_navigation_bar: ^1.1.0+1
-  restart_app: ^1.1.0
+  image_cropper: ^3.0.1
 
 dev_dependencies:
   flutter_test:
