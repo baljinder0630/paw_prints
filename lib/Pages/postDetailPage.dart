@@ -40,7 +40,18 @@ class _PostDetailState extends State<PostDetail> {
                   ),
                   Container(
                     height: 50,
-                    color: Colors.cyan.shade800,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Colors.amber.shade800,
+                          Colors.amber.shade700,
+                          Colors.amber.shade600,
+                          Colors.amber.shade500
+                        ]
+                      )
+                    ),
                     child: Row(
                       children: [
                         IconButton(
