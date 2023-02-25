@@ -10,7 +10,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  bool toggleValue = true;
+  bool toggleValue = false;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -31,12 +31,19 @@ class _SettingPageState extends State<SettingPage> {
                   value: Text('English'),
                 ),
                 SettingsTile.switchTile(
+                  initialValue: true,
                   onToggle: (value) {
+                    toggleValue = value;
                     setState(() {
-                      toggleValue = value;
+                      toggleValue;
                     });
                   },
-                  initialValue: toggleValue,
+                  onPressed: (contex) {
+                    setState(() {
+                      toggleValue;
+                    });
+                  },
+                  //initialValue: toggleValue,
                   leading: Icon(Icons.format_paint),
                   title: Text('Enable custom theme'),
                 ),
