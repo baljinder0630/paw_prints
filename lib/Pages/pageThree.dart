@@ -31,7 +31,9 @@ class _PageTwoState extends State<ProfilePage> {
                         widget.userModel.avatar.toString(),
                       )
                     : null,
-                foregroundImage: AssetImage('assets/userImage.jpg'),
+                foregroundImage: widget.userModel.avatar == ""
+                    ? AssetImage('assets/userImage.jpg')
+                    : null,
               ),
               Text(
                 widget.userModel.username.toString(),
