@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -26,18 +24,24 @@ class _PageZeroState extends State<PageNoOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        tooltip: "Search in nearby location",
-        onPressed: (() {}),
-        child: Icon(Icons.location_searching_rounded),
+      floatingActionButton: Container(
+        padding: EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),          
+          backgroundColor: Colors.amber,
+          tooltip: "Search in nearby location",
+          onPressed: (() {}),
+          child: Icon(Icons.location_searching_rounded),
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.only(left:10.0 ,right: 80.0),
                 child: DropdownButton<String>(
                   alignment: Alignment.center,
                   isExpanded: true,
@@ -76,7 +80,7 @@ class _PageZeroState extends State<PageNoOne> {
                     );
                   }
 
-                  QuerySnapshot query Snapshot = snapshot.data as QuerySnapshot;
+                  QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
                   return ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
