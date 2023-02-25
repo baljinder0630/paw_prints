@@ -98,7 +98,7 @@ class _AddPostState extends State<AddPost> {
           id: getPostId(),
           caption: _captionController.text.trim(),
           imgUrl: url,
-          timeStamp: FieldValue.serverTimestamp(),
+          createdTime: DateTime.now().toString(),
           userId: FirebaseAuth.instance.currentUser!.uid,
           username: widget.userModel.username);
       await firestore

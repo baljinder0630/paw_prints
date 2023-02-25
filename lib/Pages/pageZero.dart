@@ -5,8 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/Post.dart';
 import 'package:paw_prints/Models/UserModel.dart';
-import 'package:paw_prints/Models/firebaseHelper.dart';
-import 'package:paw_prints/Pages/AddPost.dart';
 import 'package:paw_prints/Pages/postDetailPage.dart';
 
 class PageNoZero extends StatefulWidget {
@@ -24,7 +22,7 @@ class _PageOneState extends State<PageNoZero> {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('posts')
-            .orderBy('timeStamp', descending: true)
+            .orderBy('createdTime', descending: true)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -71,7 +69,32 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
           title: Text(postModel.username.toString() == ""
               ? "<No Title>"
               : postModel.username.toString()),
-          //subtitle: Text((postModel.timeStamp).toString()),
+          subtitle: DateTime.now()
+                      .difference(
+                          DateTime.tryParse(postModel.createdTime.toString())!)
+                      .inDays >
+                  0
+              ? Text(DateTime.now()
+                      .difference(
+                          DateTime.tryParse(postModel.createdTime.toString())!)
+                      .inDays
+                      .toString() +
+                  "days ago")
+              : DateTime.now().difference(DateTime.tryParse(postModel.createdTime.toString())!).inHours >
+                      0
+                  ? Text(DateTime.now()
+                          .difference(DateTime.tryParse(
+                              postModel.createdTime.toString())!)
+                          .inHours
+                          .toString() +
+                      "hrs ago")
+                  : DateTime.now()
+                              .difference(
+                                  DateTime.tryParse(postModel.createdTime.toString())!)
+                              .inMinutes >
+                          0
+                      ? Text(DateTime.now().difference(DateTime.tryParse(postModel.createdTime.toString())!).inMinutes.toString() + "mins ago")
+                      : Text(DateTime.now().difference(DateTime.tryParse(postModel.createdTime.toString())!).inSeconds.toString() + "sec ago"),
         ),
         InkWell(
             onTap: (() =>
