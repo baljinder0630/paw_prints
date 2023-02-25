@@ -61,10 +61,15 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
       children: [
         ListTile(
           leading: CircleAvatar(
-            backgroundImage: NetworkImage(postModel.imgUrl.toString()),
+            backgroundImage: usermodel.avatar.toString() != ""
+                ? NetworkImage(usermodel.avatar.toString())
+                : null,
+            foregroundImage: AssetImage("assets/userImage.jpg"),
           ),
-          title: Text(postModel.username.toString() == "" ? "<No Title>": postModel.username.toString()),
-          //subtitle: Text((postModel.timeStamp).toString()),          
+          title: Text(postModel.username.toString() == ""
+              ? "<No Title>"
+              : postModel.username.toString()),
+          //subtitle: Text((postModel.timeStamp).toString()),
         ),
         InkWell(
             onTap: (() =>

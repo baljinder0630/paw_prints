@@ -54,7 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 _bottomNavIndex == 0
                     ? Navigator.push(context,
                         MaterialPageRoute(builder: ((context) {
-                        return AddPost();
+                        return AddPost(
+                          userModel: widget.userModel,
+                        );
                       })))
                     : _bottomNavIndex == 1
                         ? Navigator.push(context,
