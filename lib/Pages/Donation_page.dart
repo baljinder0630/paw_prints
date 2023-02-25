@@ -60,7 +60,7 @@ class _DonatePetState extends State<DonatePet> {
               // )
               )
           .then((value) {
-            log("Done")
+            log("Done");
           });
 
       if (FinalImage != null) {
