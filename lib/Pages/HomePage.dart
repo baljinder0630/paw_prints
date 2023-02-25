@@ -36,25 +36,33 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
               centerTitle: true,
               automaticallyImplyLeading: false,
-              title: Text("Paw Prints"),
+              title: GradientText(
+                'Paw Prints',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+                colors: [
+                  Colors.amber.shade800,
+                  Colors.amber.shade700,
+                  Colors.amber.shade600,
+                  Colors.amber.shade500
+                ],
+              )
             ),
 
             //
             //
             floatingActionButton: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                      colors: [
-                        // Colors.amber.shade800,
-                        //  Colors.amber.shade700,
-                        Colors.amber.shade800,
-                        Colors.amber.shade700,
-                        Colors.amber.shade600,
-                        Colors.amber.shade500,
-                      ]
-                  )
-              ),
+              // decoration: BoxDecoration(
+              //     shape: BoxShape.circle,
+              //     gradient: LinearGradient(colors: [
+              //       Colors.amber.shade800,
+              //       Colors.amber.shade700,
+              //       Colors.amber.shade800,
+              //       Colors.amber.shade700,
+              //       Colors.amber.shade600,
+              //       Colors.amber.shade500,
+              //     ])),
               child: FloatingActionButton(
                 tooltip: _bottomNavIndex == 0
                     ? "Add Post"
@@ -63,8 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         : _bottomNavIndex == 2
                             ? "Log Out"
                             : "Edit Profile",
-                    backgroundColor: Colors.transparent,
-                 onPressed: (() async {
+                backgroundColor: Theme.of(context).primaryColor,
+                onPressed: (() async {
                   _bottomNavIndex == 0
                       ? Navigator.push(context,
                           MaterialPageRoute(builder: ((context) {
@@ -86,27 +94,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 }),
                 child: Container(
                   child: _bottomNavIndex == 0
-                      ? Icon(Icons.add_a_photo_outlined,
-                  )
+                      ? Icon(
+                          Icons.add_a_photo_outlined,
+                        )
                       : _bottomNavIndex == 1
-                      ? Icon(Icons.add
-                  )
-                      : _bottomNavIndex == 2
-                      ? Icon(Icons.logout)
-                      : Icon(Icons.edit),
-
-                  // decoration: BoxDecoration(
-                  //   gradient: LinearGradient(
-                  //     colors: [
-                  //       Colors.amber.shade800,
-                  //       Colors.amber.shade700,
-                  //       Colors.amber.shade600,
-                  //       Colors.amber.shade500
-                  //     ]
-                  //   )
-                  // ),
+                          ? Icon(Icons.add)
+                          : _bottomNavIndex == 2
+                              ? Icon(Icons.logout)
+                              : Icon(Icons.edit),
                 ),
-
               ),
             ),
             floatingActionButtonLocation:

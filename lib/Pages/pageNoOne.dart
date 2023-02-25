@@ -24,12 +24,23 @@ class _PageZeroState extends State<PageNoOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColorLight,
-        tooltip: "Search in nearby location",
-        onPressed: (() {}),
-        child: Icon(Icons.location_searching_rounded),
+      floatingActionButton: Container(
+        padding: EdgeInsets.only(top: 8.0),
+        child: FloatingActionButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          backgroundColor: Colors.amber,
+          tooltip: "Search in nearby location",
+          onPressed: (() {}),
+          child: Icon(Icons.location_searching_rounded),
+        ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Theme.of(context).primaryColorLight,
+      //   tooltip: "Search in nearby location",
+      //   onPressed: (() {}),
+      //   child: Icon(Icons.location_searching_rounded),
+      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -37,7 +48,7 @@ class _PageZeroState extends State<PageNoOne> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left:10.0 ,right: 80.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 80.0),
                 child: DropdownButton<String>(
                   alignment: Alignment.center,
                   isExpanded: true,
@@ -89,7 +100,9 @@ class _PageZeroState extends State<PageNoOne> {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: ((context) {
-                            return PetDetail(petModel: petModel);
+                            return PetDetail(
+                                userModel: widget.userModel,
+                                petModel: petModel);
                           })));
                         },
                         child: petWidget(context, petModel, widget.userModel),

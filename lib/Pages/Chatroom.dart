@@ -126,10 +126,8 @@ class _ChatRoomState extends State<ChatRoom> {
                               Container(
                                   decoration: BoxDecoration(
                                       color: (ChattingModel.sender == currentUser)
-                                          ? Color.fromARGB(255, 27, 126, 10)
-                                          : Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          ? Colors.blue
+                                          : Colors.grey.shade700,
                                       borderRadius: (ChattingModel.sender ==
                                               currentUser)
                                           ? BorderRadius.only(
