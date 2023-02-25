@@ -14,6 +14,7 @@ import 'package:paw_prints/Pages/pageOne.dart';
 import 'package:paw_prints/Pages/pageZero.dart';
 import 'package:paw_prints/Pages/pageTwo.dart';
 import 'package:paw_prints/main.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class MyHomePage extends StatefulWidget {
   UserModel userModel;

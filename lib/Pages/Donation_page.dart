@@ -138,7 +138,7 @@ class _DonatePetState extends State<DonatePet> {
                 prefixIcon: Icon(Icons.pets),
                 hintText: "Pet Name",
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: Colors.black,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(80.0),
@@ -183,7 +183,7 @@ class _DonatePetState extends State<DonatePet> {
                 prefixIcon: Icon(Icons.document_scanner_rounded),
                 hintText: "Pet Description",
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: Colors.black,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(80.0),
