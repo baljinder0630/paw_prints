@@ -126,7 +126,6 @@ class _PageTwoState extends State<ProfilePage> {
                         height: 130,
                         width: double.infinity,
                         child: StreamBuilder(
-              
                           stream: FirebaseFirestore.instance
                               .collection("Pets")
                               .where("likedBy",

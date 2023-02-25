@@ -12,39 +12,45 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SettingsList(
-        sections: [
-          SettingsSection(
-            title: Text('Common'),
-            tiles: <SettingsTile>[
-              SettingsTile.navigation(
-                leading: Icon(Icons.language),
-                title: Text('Language'),
-                value: Text('English'),
-              ),
-              SettingsTile.switchTile(
-                onToggle: (value) {},
-                initialValue: true,
-                leading: Icon(Icons.format_paint),
-                title: Text('Enable custom theme'),
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: Text('Account'),
-            tiles: <SettingsTile>[
-              SettingsTile.navigation(
-                leading: Icon(Icons.phone),
-                title: Text('Phone Number'),
-              ),
-              SettingsTile.navigation(
-                leading: Icon(Icons.email),
-                title: Text('Email'),
-              ),
-            ],
-          ),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Setting"),
+      ),
+      body: Center(
+        child: SettingsList(
+          sections: [
+            SettingsSection(
+              title: Text('Common'),
+              tiles: <SettingsTile>[
+                SettingsTile.navigation(
+                  leading: Icon(Icons.language),
+                  title: Text('Language'),
+                  value: Text('English'),
+                ),
+                SettingsTile.switchTile(
+                  onToggle: (value) {},
+                  initialValue: true,
+                  leading: Icon(Icons.format_paint),
+                  title: Text('Enable custom theme'),
+                ),
+              ],
+            ),
+            SettingsSection(
+              title: Text('Account'),
+              tiles: <SettingsTile>[
+                SettingsTile.navigation(
+                  leading: Icon(Icons.phone),
+                  title: Text('Phone Number'),
+                ),
+                SettingsTile.navigation(
+                  leading: Icon(Icons.email),
+                  title: Text('Email'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
