@@ -1,3 +1,5 @@
+import 'package:geolocator/geolocator.dart';
+
 class PetModel {
   late String name;
   String? dob;
@@ -6,6 +8,8 @@ class PetModel {
   String? description;
   String? sellingBy;
   String? buyedBy;
+  double? lat;
+  double? long;
   List<dynamic>? likedBy;
 
   PetModel(
@@ -16,7 +20,9 @@ class PetModel {
       this.buyedBy,
       this.dob,
       this.pic,
-      this.description});
+      this.description,
+      required this.lat,
+      required this.long});
 
   PetModel.fromMap(Map<String, dynamic> map) {
     name = map['name'];
@@ -27,6 +33,8 @@ class PetModel {
     pic = map['pic'];
     petId = map['petId'];
     description = map['description'];
+    lat = map['lat'];
+    long = map['long'];
   }
   Map<String, dynamic> toMap() {
     return {
@@ -38,7 +46,9 @@ class PetModel {
       "dob": dob,
       "pic": pic,
       "description": description,
-      "petId": petId
+      "petId": petId,
+      "lat": lat,
+      "long": long
     };
   }
 }
