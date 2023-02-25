@@ -35,7 +35,8 @@ class _PageTwoState extends State<ProfilePage> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -44,8 +45,8 @@ class _PageTwoState extends State<ProfilePage> {
                         alignment: Alignment.topLeft,
                         child: Text(
                           "For Donation",
-                          style:
-                              TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.amber, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
@@ -54,29 +55,34 @@ class _PageTwoState extends State<ProfilePage> {
                         child: StreamBuilder(
                           stream: FirebaseFirestore.instance
                               .collection("Pets")
-                              .where("sellingBy", isEqualTo: widget.userModel.uid)
+                              .where("sellingBy",
+                                  isEqualTo: widget.userModel.uid)
                               .snapshots(),
-                          builder: (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.connectionState == ConnectionState.active) {
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.active) {
                               log("Active Connection State");
                               if (snapshot.hasData) {
                                 log("snapshot has data");
                                 QuerySnapshot querySnapshot =
-                                snapshot.data as QuerySnapshot;
+                                    snapshot.data as QuerySnapshot;
 
                                 return ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: querySnapshot.docs.length,
-                                  itemBuilder: (BuildContext context, int index) {
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
                                     PetModel petModel = PetModel.fromMap(
                                         querySnapshot.docs[index].data()
-                                        as Map<String, dynamic>);
+                                            as Map<String, dynamic>);
                                     return Card(
                                       child: Column(children: [
                                         Container(
                                           height: 90,
                                           width: 90,
-                                          child: Image.network(petModel.pic.toString()),
+                                          child: Image.network(
+                                              petModel.pic.toString()),
                                         ),
                                         Text(petModel.name)
                                       ]),
@@ -97,72 +103,77 @@ class _PageTwoState extends State<ProfilePage> {
                 ),
               ),
               Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Adopted",
-                        style:
-                            TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Adopted",
+                          style: TextStyle(
+                              color: Colors.amber, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: 130,
-                      width: double.infinity,
-                      child: StreamBuilder(
-                        stream: FirebaseFirestore.instance
-                            .collection("Pets")
-                            .where("buyedBy", isEqualTo: widget.userModel.uid)
-                            .snapshots(),
-                        builder: (BuildContext context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState == ConnectionState.active) {
-                            log("Active Connection State");
-                            if (snapshot.hasData) {
-                              log("snapshot has data");
-                              QuerySnapshot querySnapshot =
-                              snapshot.data as QuerySnapshot;
-                              if (querySnapshot.docs.length > 0)
-                                return ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: querySnapshot.docs.length,
-                                  itemBuilder: (BuildContext context, int index) {
-                                    PetModel petModel = PetModel.fromMap(
-                                        querySnapshot.docs[index].data()
-                                        as Map<String, dynamic>);
-                                    return Card(
-                                      child: Column(children: [
-                                        Container(
-                                          height: 90,
-                                          width: 90,
-                                          child: Image.network(petModel.pic.toString()),
-                                        ),
-                                        Text(petModel.name)
-                                      ]),
-                                    );
-                                  },
-                                );
-                              else
-                                return Text("Empty");
+                      Container(
+                        height: 130,
+                        width: double.infinity,
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection("Pets")
+                              .where("buyedBy", isEqualTo: widget.userModel.uid)
+                              .snapshots(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.active) {
+                              log("Active Connection State");
+                              if (snapshot.hasData) {
+                                log("snapshot has data");
+                                QuerySnapshot querySnapshot =
+                                    snapshot.data as QuerySnapshot;
+                                if (querySnapshot.docs.length > 0)
+                                  return ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: querySnapshot.docs.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      PetModel petModel = PetModel.fromMap(
+                                          querySnapshot.docs[index].data()
+                                              as Map<String, dynamic>);
+                                      return Card(
+                                        child: Column(children: [
+                                          Container(
+                                            height: 90,
+                                            width: 90,
+                                            child: Image.network(
+                                                petModel.pic.toString()),
+                                          ),
+                                          Text(petModel.name)
+                                        ]),
+                                      );
+                                    },
+                                  );
+                                else
+                                  return Text("Empty");
+                              }
                             }
-                          }
 
-                          return Container(
-                            child: Text("Loading..."),
-                          );
-                        },
+                            return Container(
+                              child: Text("Loading..."),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 ),
               ),
-
               Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -171,59 +182,63 @@ class _PageTwoState extends State<ProfilePage> {
                         alignment: Alignment.topLeft,
                         child: Text(
                           "Liked",
-                          style:
-                              TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.amber, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
-                    height: 130,
-                    width: double.infinity,
-                    child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection("Pets")
-                          .where("likedBy", arrayContains: widget.userModel.uid)
-                          .snapshots(),
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
-                        if (snapshot.connectionState == ConnectionState.active) {
-                          log("Active Connection State");
-                          if (snapshot.hasData) {
-                            log("snapshot has data");
-                            QuerySnapshot querySnapshot =
-                                snapshot.data as QuerySnapshot;
+                        height: 130,
+                        width: double.infinity,
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection("Pets")
+                              .where("likedBy",
+                                  arrayContains: widget.userModel.uid)
+                              .snapshots(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.active) {
+                              log("Active Connection State");
+                              if (snapshot.hasData) {
+                                log("snapshot has data");
+                                QuerySnapshot querySnapshot =
+                                    snapshot.data as QuerySnapshot;
 
-                            return ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: querySnapshot.docs.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                PetModel petModel = PetModel.fromMap(
-                                    querySnapshot.docs[index].data()
-                                        as Map<String, dynamic>);
-                                return Card(
-                                  child: Column(children: [
-                                    Container(
-                                      height: 90,
-                                      width: 90,
-                                      child: Image.network(petModel.pic.toString()),
-                                    ),
-                                    Text(petModel.name)
-                                  ]),
+                                return ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: querySnapshot.docs.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    PetModel petModel = PetModel.fromMap(
+                                        querySnapshot.docs[index].data()
+                                            as Map<String, dynamic>);
+                                    return Card(
+                                      child: Column(children: [
+                                        Container(
+                                          height: 90,
+                                          width: 90,
+                                          child: Image.network(
+                                              petModel.pic.toString()),
+                                        ),
+                                        Text(petModel.name)
+                                      ]),
+                                    );
+                                  },
                                 );
-                              },
-                            );
-                          }
-                        }
+                              }
+                            }
 
-                        return Container(
-                          child: Text("Loading..."),
-                        );
-                      },
-                    ),
-                  )
+                            return Container(
+                              child: Text("Loading..."),
+                            );
+                          },
+                        ),
+                      )
                     ],
                   ),
                 ),
               ),
-
             ],
           ),
         ),
