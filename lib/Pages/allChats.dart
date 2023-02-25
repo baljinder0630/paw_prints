@@ -83,7 +83,7 @@ class _MyHomePageState extends State<AllChats> {
                                     child: Flexible(
                                       child: ListTile(
                                         tileColor:
-                                            Color.fromARGB(255, 214, 214, 214),
+                                        Theme.of(context).secondaryHeaderColor,
                                         onTap: () {
                                           Navigator.push(context,
                                               MaterialPageRoute(
