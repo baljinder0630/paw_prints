@@ -16,6 +16,7 @@ class _PageTwoState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),

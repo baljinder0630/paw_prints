@@ -185,58 +185,6 @@ class _DonatePetState extends State<DonatePet> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    height: 30,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          //color: Colors.amber,
-                          gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            stops: [0.1, 0.5, 0.7, 0.9],
-                            colors: [
-                              Colors.amber.shade800,
-                              Colors.amber.shade700,
-                              Colors.amber.shade600,
-                              Colors.amber.shade500
-                            ],
-                          ),
-                        ),
-                    child: TextButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                    content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ListTile(
-                                      onTap: () {
-                                        selectimage(ImageSource.camera);
-                                        Navigator.pop(context);
-                                      },
-                                      leading: Icon(Icons.camera_alt),
-                                      title: Text("Camera"),
-                                    ),
-                                    ListTile(
-                                      onTap: () {
-                                        selectimage(ImageSource.gallery);
-                                        Navigator.pop(context);
-                                      },
-                                      leading: Icon(Icons.photo),
-                                      title: Text("Gallery"),
-                                    ),
-                                  ],
-                                ));
-                              });
-                        },
-                        child: Text("Add pic", style: TextStyle(color: Colors.white),)),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   TextField(
                     controller: _petDescription,
                     keyboardType: TextInputType.emailAddress,
@@ -253,49 +201,106 @@ class _DonatePetState extends State<DonatePet> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
-                  ),
-                  // TextField(
-                  //   controller: _petDOB,
-                  //   keyboardType: TextInputType.datetime,
-                  //   decoration: InputDecoration(hintText: "Pet dob"),
-                  // ),
-                  Container(
                     height: 30,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          //color: Colors.amber,
-                          gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            stops: [0.1, 0.5, 0.7, 0.9],
-                            colors: [
-                              Colors.amber.shade800,
-                              Colors.amber.shade700,
-                              Colors.amber.shade600,
-                              Colors.amber.shade500
-                            ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            //color: Colors.amber,
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              stops: [0.1, 0.5, 0.7, 0.9],
+                              colors: [
+                                Colors.amber.shade800,
+                                Colors.amber.shade700,
+                                Colors.amber.shade600,
+                                Colors.amber.shade500
+                              ],
+                            ),
+                          ),
+                          child: TextButton(
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                          content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          ListTile(
+                                            onTap: () {
+                                              selectimage(ImageSource.camera);
+                                              Navigator.pop(context);
+                                            },
+                                            leading: Icon(Icons.camera_alt),
+                                            title: Text("Camera"),
+                                          ),
+                                          ListTile(
+                                            onTap: () {
+                                              selectimage(ImageSource.gallery);
+                                              Navigator.pop(context);
+                                            },
+                                            leading: Icon(Icons.photo),
+                                            title: Text("Gallery"),
+                                          ),
+                                        ],
+                                      ));
+                                    });
+                              },
+                              child: Text(
+                                "Add pic",
+                                style: TextStyle(color: Colors.white),
+                              )),
+                        ),
+                        Container(
+                          height: 30,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            //color: Colors.amber,
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              stops: [0.1, 0.5, 0.7, 0.9],
+                              colors: [
+                                Colors.amber.shade800,
+                                Colors.amber.shade700,
+                                Colors.amber.shade600,
+                                Colors.amber.shade500
+                              ],
+                            ),
+                          ),
+                          child: TextButton(
+                            onPressed: () async {
+                              DateTime? _selectedDate = await showDatePicker(
+                                context: context,
+                                initialDate:
+                                    _dob == null ? DateTime.now() : _dob!,
+                                firstDate: DateTime(1990),
+                                lastDate: DateTime(3000),
+                              );
+                              setState(() {
+                                if (_selectedDate != null) {
+                                  _dob = _selectedDate;
+                                }
+                              });
+                              log(_selectedDate.toString());
+                            },
+                            child: Text("Pick DOB",
+                                style: TextStyle(color: Colors.white)),
                           ),
                         ),
-                    child: TextButton(
-                        onPressed: () async {
-                          DateTime? _selectedDate = await showDatePicker(
-                            context: context,
-                            initialDate: _dob == null ? DateTime.now() : _dob!,
-                            firstDate: DateTime(1990),
-                            lastDate: DateTime(3000),
-                          );
-                          setState(() {
-                            if (_selectedDate != null) {
-                              _dob = _selectedDate;
-                            }
-                          });
-                          log(_selectedDate.toString());
-                        },
-                        child: Text("Pick DOB", style: TextStyle(color: Colors.white)),
+                      ],
                     ),
-                  ),
+                  )
 
                   // TextButton(
                   //   child: Text("Location"),
@@ -303,31 +308,37 @@ class _DonatePetState extends State<DonatePet> {
                   //     getCurrentLocation();
                   //   },
                   // ),
+                  ,
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: dropdownValue,
+                      items: <String>['Dog', 'bird', 'Cat', 'Cow', 'other']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: TextStyle(fontSize: 15, color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
+                      },
+                    ),
+                  ),
                   uploadingData == true
                       ? CircularProgressIndicator()
                       : SizedBox(
                           height: 30,
                         ),
-                  DropdownButton<String>(
-                    isExpanded: true,
-                    value: dropdownValue,
-                    items: <String>['Dog', 'bird', 'Cat', 'Cow', 'other']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(fontSize: 15, color: Colors.white),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue;
-                      });
-                    },
-                  ),
-
                   TextButton(
                       onPressed: () {
                         setState(() {
