@@ -29,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, snapshot) {
           return Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               automaticallyImplyLeading: false,
               actions: [
                 IconButton(
