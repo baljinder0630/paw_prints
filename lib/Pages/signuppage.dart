@@ -353,7 +353,7 @@ class _SignUpState extends State<SignUp> {
                                 )
                               ]),
                           child: IconButton(
-                            icon: Image.asset('assets/apple1.jpeg'),
+                            icon: Image.asset('assets/apple2.png'),
                             iconSize: 30,
                             onPressed: () {},
                           ),

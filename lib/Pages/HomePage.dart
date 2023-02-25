@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
+import 'package:paw_prints/Pages/AddPost.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
-import 'package:paw_prints/Pages/ProfilePage.dart';
-import 'package:paw_prints/Pages/page0.dart';
-import 'package:paw_prints/Pages/page1.dart';
-import 'package:paw_prints/Pages/settingPage.dart';
+import 'package:paw_prints/Pages/editProfile.dart';
+import 'package:paw_prints/Pages/pageThree.dart';
+import 'package:paw_prints/Pages/pageOne.dart';
+import 'package:paw_prints/Pages/pageZero.dart';
+import 'package:paw_prints/Pages/pageTwo.dart';
 import 'package:paw_prints/main.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -34,58 +36,45 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
               centerTitle: true,
               automaticallyImplyLeading: false,
-              actions: [
-                IconButton(
-                    onPressed: () async {
-                      await FirebaseAuth.instance.signOut();
-                      Navigator.popUntil(context, (route) => route.isFirst);
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) {
-                        return MyApp();
-                      }));
-                    },
-                    icon: Icon(Icons.logout))
-              ],
-              title: GradientText(
-                'Paw Prints',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-                colors: [
-                  Colors.amber.shade800,
-                  Colors.amber.shade700,
-                  Colors.amber.shade600,
-                  Colors.amber.shade500
-                ],
-              ),
+              title: Text("Paw Prints"),
             ),
 
             //
             //
             floatingActionButton: FloatingActionButton(
-              tooltip: "Want to donate Pet?",
+              tooltip: _bottomNavIndex == 0
+                  ? "Add Post"
+                  : _bottomNavIndex == 1
+                      ? "Want to donate Pet?"
+                      : _bottomNavIndex == 2
+                          ? "Log Out"
+                          : "Edit Profile",
               backgroundColor: Theme.of(context).primaryColor,
-
-              onPressed: (() {
-                Navigator.push(context, MaterialPageRoute(builder: ((context) {
-                  return DonatePet(usermodel: widget.userModel);
-                })));
+              onPressed: (() async {
+                _bottomNavIndex == 0
+                    ? Navigator.push(context,
+                        MaterialPageRoute(builder: ((context) {
+                        return AddPost();
+                      })))
+                    : _bottomNavIndex == 1
+                        ? Navigator.push(context,
+                            MaterialPageRoute(builder: ((context) {
+                            return DonatePet(usermodel: widget.userModel);
+                          })))
+                        : _bottomNavIndex == 2
+                            ? logout(context)
+                            : Navigator.push(context,
+                                MaterialPageRoute(builder: ((context) {
+                                return EditProfile();
+                              })));
               }),
-              child: Container(child: Icon(Icons.add),
-              height: 60,
-              width: 60,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.amber.shade800,
-                      Colors.amber.shade700,
-                      Colors.amber.shade600,
-                      Colors.amber.shade500
-                    ]
-                  )
-                ),
-              ),
+              child: _bottomNavIndex == 0
+                  ? Icon(Icons.add_a_photo_outlined)
+                  : _bottomNavIndex == 1
+                      ? Icon(Icons.add)
+                      : _bottomNavIndex == 2
+                          ? Icon(Icons.logout)
+                          : Icon(Icons.edit),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
@@ -93,9 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
             //
             //
             body: _bottomNavIndex == 0
-                ? PageOne(userModel: widget.userModel)
+                ? PageNoZero(userModel: widget.userModel)
                 : _bottomNavIndex == 1
-                    ? PageZero(userModel: widget.userModel)
+                    ? PageNoOne(userModel: widget.userModel)
                     : _bottomNavIndex == 2
                         ? SettingPage()
                         : ProfilePage(userModel: widget.userModel),
@@ -123,4 +112,12 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         });
   }
+}
+
+void logout(context) async {
+  await FirebaseAuth.instance.signOut();
+  Navigator.popUntil(context, (route) => route.isFirst);
+  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+    return MyApp();
+  }));
 }

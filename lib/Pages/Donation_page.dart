@@ -235,13 +235,13 @@ class _DonatePetState extends State<DonatePet> {
                     gradient: LinearGradient(
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
-                      stops: [0.1,0.5,0.7,0.9],
-                        colors: [
-                          Colors.amber.shade800,
-                          Colors.amber.shade700,
-                          Colors.amber.shade600,
-                          Colors.amber.shade500
-                          ],
+                      stops: [0.1, 0.5, 0.7, 0.9],
+                      colors: [
+                        Colors.amber.shade800,
+                        Colors.amber.shade700,
+                        Colors.amber.shade600,
+                        Colors.amber.shade500
+                      ],
                     ),
                   ),
                   child: Center(
