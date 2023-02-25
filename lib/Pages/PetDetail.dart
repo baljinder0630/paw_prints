@@ -89,11 +89,11 @@ class _BuyPageState extends State<PetDetail> {
                         child: Card(
                             child:
                                 Image.network(widget.petModel.pic.toString()))),
+                    Text(widget.petModel.name.toString(),
+                        style: TextStyle(color: Colors.grey)),
                     Text(widget.petModel.description.toString(),
                         style: TextStyle(color: Colors.grey)),
                     Text(widget.petModel.dob.toString(),
-                        style: TextStyle(color: Colors.grey)),
-                    Text(widget.petModel.likedBy!.length.toString(),
                         style: TextStyle(color: Colors.grey)),
                     Text(widget.petModel.sellingBy.toString(),
                         style: TextStyle(color: Colors.grey)),
