@@ -27,6 +27,7 @@ class _PageZeroState extends State<PageNoOne> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColorLight,
         tooltip: "Search in nearby location",
         onPressed: (() {}),
         child: Icon(Icons.location_searching_rounded),
@@ -76,7 +77,7 @@ class _PageZeroState extends State<PageNoOne> {
                     );
                   }
 
-                  QuerySnapshot query Snapshot = snapshot.data as QuerySnapshot;
+                  QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
                   return ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

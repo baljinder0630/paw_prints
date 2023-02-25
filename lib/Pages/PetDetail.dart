@@ -122,20 +122,20 @@ class _BuyPageState extends State<PetDetail> {
                                   child: Text("Message",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 25,
+                                          fontSize: 20,
                                           color: Colors.white))),
                               width: MediaQuery.of(context).size.width / 2,
-                              color: Colors.green,
+                              color: Colors.grey.shade700,
                             ),
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width / 2,
-                            color: Colors.blue,
+                            color: Colors.grey.shade600,
                             child: Center(
                                 child: Text("Adopt",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 25,
+                                        fontSize: 20,
                                         color: Colors.white))),
                           )
                         ],
