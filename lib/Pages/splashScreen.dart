@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            logo(160, 160),
+            logo(200, 200),
             const SizedBox(
               height: 50,
             ),
@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
       height: height_,
       width: width_,
       child: Lottie.network(
-          'https://assets7.lottiefiles.com/packages/lf20_32v7KqVd8G.json'),
+          'https://assets8.lottiefiles.com/packages/lf20_2ixzdfvy.json'),
     );
     //  return SvgPicture.asset(
     //    'assets/doggy.svg',
@@ -77,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
       TextSpan(
         style: TextStyle(
           fontSize: fontSize,
-          color: const Color(0xFF21899C),
+          color: Theme.of(context).primaryColor,
           letterSpacing: 3,
           height: 1.03,
         ),
@@ -95,10 +95,10 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           TextSpan(
-            text: 'PetAdoptionApp',
+            text: 'Paw Prints',
             style: TextStyle(
               fontWeight: FontWeight.w800,
-              color: Color(0xFF0C1446),
+              color: Colors.amber,
             ),
           ),
         ],
