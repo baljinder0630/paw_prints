@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:paw_prints/main.dart';
+import 'package:restart_app/restart_app.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -15,8 +18,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Restart.restartApp();
+                // runApp(Phoenix(child: MyApp()));
+              },
+              icon: Icon(Icons.logout))
+        ],
         title: Text("Paw Prints"),
       ),
+
+      //
+      //
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromARGB(255, 236, 219, 67),
         onPressed: (() {}),

@@ -118,7 +118,7 @@ class _LoginPage extends State<LoginPage> {
                             prefixIcon: Icon(Icons.email),
                             hintText: "Email",
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.black,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
@@ -148,7 +148,7 @@ class _LoginPage extends State<LoginPage> {
                             prefixIcon: Icon(Icons.password),
                             hintText: "Password",
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.black,
                             suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
