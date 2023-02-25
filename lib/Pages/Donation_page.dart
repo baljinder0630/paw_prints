@@ -12,6 +12,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:paw_prints/Models/petModel.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:uuid/uuid.dart';
 
 class DonatePet extends StatefulWidget {
@@ -180,7 +181,18 @@ class _DonatePetState extends State<DonatePet> {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text("Donate"),
+              title: GradientText(
+                'Donate',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+                colors: [
+                  Colors.amber.shade800,
+                  Colors.amber.shade700,
+                  Colors.amber.shade600,
+                  Colors.amber.shade500
+                ],
+              ),
             ),
             body: Padding(
               padding: const EdgeInsets.all(8.0),

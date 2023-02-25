@@ -36,7 +36,18 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
               centerTitle: true,
               automaticallyImplyLeading: false,
-              title: Text("Paw Prints"),
+              title: GradientText(
+                'Paw Prints',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+                colors: [
+                  Colors.amber.shade800,
+                  Colors.amber.shade700,
+                  Colors.amber.shade600,
+                  Colors.amber.shade500
+                ],
+              )
             ),
 
             //

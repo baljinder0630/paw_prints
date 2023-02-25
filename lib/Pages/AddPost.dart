@@ -10,6 +10,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:paw_prints/Models/Post.dart';
 import 'package:paw_prints/Models/UserModel.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:uuid/uuid.dart';
 
 class AddPost extends StatefulWidget {
@@ -124,8 +125,21 @@ class _AddPostState extends State<AddPost> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Post'),
-      ),
+        centerTitle: true,
+        title: GradientText(
+            'New Post',
+            style: TextStyle(
+              fontSize: 25,
+            ),
+            colors: [
+              Colors.amber.shade800,
+              Colors.amber.shade700,
+              Colors.amber.shade600,
+              Colors.amber.shade500
+            ],
+          ),
+        ),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
