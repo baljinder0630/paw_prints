@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                     Text(
                       """Sign Up""",
                       style: TextStyle(
-                          color: Color(0xFF21899C),
+                          color: Theme.of(context).primaryColor,
                           fontSize: 45,
                           fontWeight: FontWeight.bold),
                     ),
@@ -136,12 +136,13 @@ class _SignUpState extends State<SignUp> {
                             prefixIcon: Icon(Icons.email),
                             hintText: "Email",
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.black,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
                                 ),
-                                borderSide: BorderSide(color: Colors.teal)),
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor)),
                           ),
                         )),
                     SizedBox(
@@ -180,12 +181,13 @@ class _SignUpState extends State<SignUp> {
                             prefixIcon: Icon(Icons.password),
                             hintText: "Password",
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.black,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
                                 ),
-                                borderSide: BorderSide(color: Colors.teal)),
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor)),
                           ),
                         )),
                     SizedBox(
@@ -223,12 +225,13 @@ class _SignUpState extends State<SignUp> {
                             prefixIcon: Icon(Icons.password),
                             hintText: "Confirm Password",
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.black,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
                                 ),
-                                borderSide: BorderSide(color: Colors.teal)),
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor)),
                           ),
                         )),
                     SizedBox(
@@ -262,12 +265,15 @@ class _SignUpState extends State<SignUp> {
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            color: Color(0xFF21899C),
+                            color: Theme.of(context).primaryColor,
                           ),
                           child: Center(
                               child: Text(
                             "Submit",
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25),
                           )),
                         ),
                       ),
