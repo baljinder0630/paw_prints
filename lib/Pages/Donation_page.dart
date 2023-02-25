@@ -28,6 +28,8 @@ class _DonatePetState extends State<DonatePet> {
   final _petDescription = TextEditingController();
   var petId;
   bool uploadingData = false;
+
+  String? dropdownValue = 'Dog';
   String generateId() => Uuid().v1();
   File? petPic;
   StreamController<Position> posContoller = StreamController();
@@ -280,6 +282,26 @@ class _DonatePetState extends State<DonatePet> {
                       : SizedBox(
                           height: 30,
                         ),
+                  DropdownButton<String>(
+
+                    isExpanded: true,
+                    value: dropdownValue,
+                    items: <String>['Dog','bird', 'Cat', 'Cow', 'other']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 30, color: Colors.white),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                      });
+                    },
+                  ),
 
                   TextButton(
                       onPressed: () {

@@ -1,6 +1,7 @@
 // ignore_for_file: curly_braces_in_flow_control_structures, prefer_const_constructors
 
 import 'dart:developer';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/Post.dart';
@@ -20,33 +21,73 @@ class _PageOneState extends State<PageNoZero> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('posts')
-            .orderBy('createdTime', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(child: Text('Something went wrong'));
-          }
-          if (snapshot.hasData) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
-            return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                log((querySnapshot.docs[index].data() as Map<String, dynamic>)
-                    .toString());
-                PostModel postModel = PostModel.fromMap(
-                    querySnapshot.docs[index].data() as Map<String, dynamic>);
-                return postWidget(context, postModel, widget.userModel);
-              },
-            );
-          }
-          return Center(child: CircularProgressIndicator());
-        },
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                  margin: EdgeInsets.only(top: 10.0),
+                  width: double.infinity,
+                  child: CarouselSlider(
+                    items: [
+                      Card(
+                        margin: EdgeInsets.all(0.0),
+                        child: Image.asset("assets/Pet1.jpg", fit: BoxFit.cover),
+                      ),
+                      Card(
+                        margin: EdgeInsets.all(0.0),
+                        child: Image.asset("assets/Pet2.png", fit: BoxFit.cover),
+                      ),
+                      Card(
+                        margin: EdgeInsets.all(0.0),
+                        child: Image.asset("assets/Pet3.jpg", fit: BoxFit.cover),
+                      ),
+                      Card(
+                        margin: EdgeInsets.all(0.0),
+                        child: Image.asset("assets/Pet4.jpg", fit: BoxFit.cover),
+                      ),
+                      Card(
+                        margin: EdgeInsets.all(0.0),
+                        child: Image.asset("assets/Pet5.jpg", fit: BoxFit.cover),
+                      ),
+                    ],
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                    ),
+                  ),
+                ),
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('posts')
+                    .orderBy('timeStamp', descending: true)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(child: Text('Something went wrong'));
+                  }
+                  if (snapshot.hasData) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        log((querySnapshot.docs[index].data() as Map<String, dynamic>)
+                            .toString());
+                        PostModel postModel = PostModel.fromMap(
+                            querySnapshot.docs[index].data() as Map<String, dynamic>);
+                        return postWidget(context, postModel, widget.userModel);
+                      },
+                    );
+                  }
+                  return Center(child: CircularProgressIndicator());
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

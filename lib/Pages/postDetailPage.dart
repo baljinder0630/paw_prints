@@ -67,7 +67,7 @@ class _PostDetailState extends State<PostDetail> {
                                   FirebaseAuth.instance.currentUser!.uid)
                               ? Icon(Icons.thumb_up, color: Colors.red)
                               : Icon(Icons.thumb_up_alt_outlined,
-                                  color: Colors.grey),
+                                  color: Colors.black),
                           iconSize: 20,
                           onPressed: () async {
                             if (widget.postModel.likes!.contains(
@@ -101,7 +101,7 @@ class _PostDetailState extends State<PostDetail> {
                             FocusScope.of(context).requestFocus(_focusNode);
                           },
                           icon: Icon(Icons.insert_comment_rounded),
-                          color: Colors.grey,
+                          color: Colors.black,
                           highlightColor: Colors.transparent,
                           splashColor: Colors.cyan,
                         )
@@ -112,6 +112,7 @@ class _PostDetailState extends State<PostDetail> {
                     height: 20,
                   ),
                   TextFormField(
+                    style: TextStyle(color: Colors.white),
                     maxLength: 100,
                     focusNode: _focusNode,
                     validator: (value) {
@@ -123,6 +124,7 @@ class _PostDetailState extends State<PostDetail> {
                     controller: _commentController,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
+                        color: Colors.white,
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               log("Comment state validated");
@@ -153,12 +155,12 @@ class _PostDetailState extends State<PostDetail> {
                           },
                           icon: Icon(
                             Icons.send,
-                            color: Colors.black,
+                            color: Colors.white,
                           )),
                       prefixIcon: Icon(Icons.comment_bank_outlined),
                       hintText: "Add Comment",
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.black,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(80.0),
