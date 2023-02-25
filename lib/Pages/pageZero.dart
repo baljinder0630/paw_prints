@@ -64,7 +64,9 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
             backgroundImage: usermodel.avatar.toString() != ""
                 ? NetworkImage(usermodel.avatar.toString())
                 : null,
-            foregroundImage: AssetImage("assets/userImage.jpg"),
+            foregroundImage: usermodel.avatar == ""
+                ? AssetImage('assets/userImage.jpg')
+                : null,
           ),
           title: Text(postModel.username.toString() == ""
               ? "<No Title>"

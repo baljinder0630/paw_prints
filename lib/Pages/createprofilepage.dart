@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -84,7 +85,7 @@ class _CreateProfileState extends State<CreateProfile> {
     widget.usermodel.username = usernamecontroller.text.toString();
     await FirebaseFirestore.instance
         .collection("User")
-        .doc(widget.firebaseUser)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
         .set(widget.usermodel.toMap())
         .onError((error, stackTrace) => showDialog(
             context: context,

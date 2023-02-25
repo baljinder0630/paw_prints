@@ -36,21 +36,21 @@ class _SplashScreenState extends State<SplashScreen> {
     if (currentUser != null) {
       UserModel? userModel =
           await FirebaseHelper.getUserModelByID(currentUser.uid);
-
-      if (userModel.username == "")
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: ((context) => CreateProfile(
-                      firebaseUser: currentUser,
-                      usermodel: userModel,
-                    ))));
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: ((context) => MyHomePage(
-                    userModel: userModel,
-                  ))));
+      log(userModel.username.isEmpty.toString());
+      userModel.username.isEmpty
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: ((context) => CreateProfile(
+                        firebaseUser: currentUser,
+                        usermodel: userModel,
+                      ))))
+          : Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: ((context) => MyHomePage(
+                        userModel: userModel,
+                      ))));
     } else {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: ((context) => SignUp())));
