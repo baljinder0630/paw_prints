@@ -12,6 +12,7 @@ import 'package:paw_prints/Pages/page0.dart';
 import 'package:paw_prints/Pages/page1.dart';
 import 'package:paw_prints/Pages/settingPage.dart';
 import 'package:paw_prints/main.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class MyHomePage extends StatefulWidget {
   UserModel userModel;
@@ -45,7 +46,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     icon: Icon(Icons.logout))
               ],
-              title: Text("Paw Prints"),
+              title: GradientText(
+                'Paw Prints',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+                colors: [
+                  Colors.amber.shade800,
+                  Colors.amber.shade700,
+                  Colors.amber.shade600,
+                  Colors.amber.shade500
+                ],
+              ),
             ),
 
             //
@@ -53,12 +65,27 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: FloatingActionButton(
               tooltip: "Want to donate Pet?",
               backgroundColor: Theme.of(context).primaryColor,
+
               onPressed: (() {
                 Navigator.push(context, MaterialPageRoute(builder: ((context) {
                   return DonatePet(usermodel: widget.userModel);
                 })));
               }),
-              child: Icon(Icons.add),
+              child: Container(child: Icon(Icons.add),
+              height: 60,
+              width: 60,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.amber.shade800,
+                      Colors.amber.shade700,
+                      Colors.amber.shade600,
+                      Colors.amber.shade500
+                    ]
+                  )
+                ),
+              ),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
