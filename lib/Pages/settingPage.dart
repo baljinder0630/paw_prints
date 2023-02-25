@@ -34,7 +34,6 @@ class _SettingPageState extends State<SettingPage> {
                   onToggle: (value) {
                     setState(() {
                       toggleValue = value;
-                      
                     });
                   },
                   initialValue: toggleValue,
