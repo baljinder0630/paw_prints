@@ -41,22 +41,33 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
               centerTitle: true,
               automaticallyImplyLeading: false,
-              title: Text("Paw Prints"),
+              title: GradientText(
+                'Paw Prints',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+                colors: [
+                  Colors.amber.shade800,
+                  Colors.amber.shade700,
+                  Colors.amber.shade600,
+                  Colors.amber.shade500
+                ],
+              )
             ),
 
             //
             //
             floatingActionButton: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(colors: [
-                    Colors.amber.shade800,
-                    Colors.amber.shade700,
-                    Colors.amber.shade800,
-                    Colors.amber.shade700,
-                    Colors.amber.shade600,
-                    Colors.amber.shade500,
-                  ])),
+              // decoration: BoxDecoration(
+              //     shape: BoxShape.circle,
+              //     gradient: LinearGradient(colors: [
+              //       Colors.amber.shade800,
+              //       Colors.amber.shade700,
+              //       Colors.amber.shade800,
+              //       Colors.amber.shade700,
+              //       Colors.amber.shade600,
+              //       Colors.amber.shade500,
+              //     ])),
               child: FloatingActionButton(
                 tooltip: _bottomNavIndex == 0
                     ? "Add Post"
@@ -65,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         : _bottomNavIndex == 2
                             ? "Log Out"
                             : "Edit Profile",
-                backgroundColor: Colors.transparent,
+                backgroundColor: Theme.of(context).primaryColor,
                 onPressed: (() async {
                   _bottomNavIndex == 0
                       ? Navigator.push(context,
