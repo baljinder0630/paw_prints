@@ -72,8 +72,8 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
           leading: CircleAvatar(
             backgroundImage: NetworkImage(postModel.imgUrl.toString()),
           ),
-          title: Text(postModel.username.toString()),
-          subtitle: Text((postModel.timeStamp).toString()),
+          title: Text(postModel.username.toString() == "" ? "<No Title>": postModel.username.toString()),
+          //subtitle: Text((postModel.timeStamp).toString()),          
         ),
         InkWell(
             onTap: (() =>
