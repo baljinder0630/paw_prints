@@ -40,9 +40,9 @@ class _AddPostState extends State<AddPost> {
       File? FinalImage = await ImageCropper().cropImage(
           sourcePath: BeforeCrop.path,
           // aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-          compressQuality: 20
+          compressQuality: 20,
           aspectRatioPresets: [
-            CropAspectRatioPreset.ratio5x4
+            CropAspectRatioPreset.ratio5x4,
             CropAspectRatioPreset.square,
             CropAspectRatioPreset.ratio3x2,
             // CropAspectRatioPreset.original,

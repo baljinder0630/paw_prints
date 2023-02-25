@@ -220,7 +220,7 @@ class _DonatePetState extends State<DonatePet> {
               },
             ),
             SizedBox(
-              height: 50,
+              height: 30,
             ),
             TextButton(
                 onPressed: () async {
