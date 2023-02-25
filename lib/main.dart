@@ -1,6 +1,7 @@
+// ignore_for_file: prefer_const_con
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:paw_prints/Pages/HomePage.dart';
+import 'package:paw_prints/Pages/splashScreen.dart';
 import 'package:paw_prints/firebase_options.dart';
 
 void main() async {
@@ -8,7 +9,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,12 +19,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF21899C)),
+      // theme: ThemeData(
+      //   appBarTheme: const AppBarTheme(color: Color(0xFF21899C)),
+      //   primaryColor: const Color(0xFF21899C),
+      // ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
         primaryColor: const Color(0xFF21899C),
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: SplashScreen(),
     );
   }
 }
