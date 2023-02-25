@@ -24,6 +24,9 @@ class _PostDetailState extends State<PostDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+             title: const Text('Comments'),
+           ),
       body: SingleChildScrollView(
         child: GestureDetector(
           onTap: () {
@@ -35,6 +38,11 @@ class _PostDetailState extends State<PostDetail> {
               key: _formKey,
               child: SafeArea(
                 child: Column(children: [
+                  // Scaffold(
+                  //   appBar: AppBar(
+                  //     title: const Text('Comments'),
+                  //   ),
+                  // ),
                   Container(
                     child: Image.network(widget.postModel.imgUrl.toString()),
                   ),
