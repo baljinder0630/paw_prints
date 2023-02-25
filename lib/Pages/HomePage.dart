@@ -14,7 +14,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Paw Prints"),
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromARGB(255, 236, 219, 67),
         onPressed: (() {}),
