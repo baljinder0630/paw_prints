@@ -132,7 +132,7 @@ class _BuyPageState extends State<PetDetail> {
                             width: MediaQuery.of(context).size.width / 2,
                             color: Colors.blue,
                             child: Center(
-                                child: Text("Buy",
+                                child: Text("Adopt",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 25,

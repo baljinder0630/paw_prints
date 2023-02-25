@@ -1,11 +1,16 @@
 // ignore_for_file: prefer_const_constructors
+
 import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
+import 'package:paw_prints/Pages/PetDetail.dart';
+
 import '../Models/petModel.dart';
+import '';
 
 class PageNoOne extends StatefulWidget {
   UserModel userModel;
@@ -18,45 +23,19 @@ class PageNoOne extends StatefulWidget {
 
 class _PageZeroState extends State<PageNoOne> {
   String? dropdownValue = 'Dog';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Search in nearby location",
+        onPressed: (() {}),
+        child: Icon(Icons.location_searching_rounded),
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Container(
-                  height: 40,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Theme.of(context).primaryColor,
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      stops: [0.1, 0.5, 0.7, 0.9],
-                      colors: [
-                        Colors.amber.shade800,
-                        Colors.amber.shade700,
-                        Colors.amber.shade600,
-                        Colors.amber.shade500
-                      ],
-                    ),
-                  ),
-                  child: Center(
-                      child: Text(
-                    "Search in nearby location",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  )),
-                ),
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: DropdownButton<String>(
@@ -97,7 +76,7 @@ class _PageZeroState extends State<PageNoOne> {
                     );
                   }
 
-                  QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
+                  QuerySnapshot query Snapshot = snapshot.data as QuerySnapshot;
                   return ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -107,13 +86,18 @@ class _PageZeroState extends State<PageNoOne> {
                           querySnapshot.docs[index].data()
                               as Map<String, dynamic>);
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: ((context) {
+                            return PetDetail(petModel: petModel);
+                          })));
+                        },
                         child: petWidget(context, petModel, widget.userModel),
                       );
                     },
                   );
                 },
-              ),
+              )
             ],
           ),
         ),
@@ -154,7 +138,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color: Colors.black),
                 ),
               )),
           Container(
@@ -221,7 +205,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
             backgroundColor: Colors.grey.shade600,
             title: Text(
               "Description",
-              style: TextStyle(fontSize: 15, color: Colors.white),
+              style: TextStyle(fontSize: 15, color: Colors.black),
             ),
             expandedAlignment: Alignment.topLeft,
             children: [
