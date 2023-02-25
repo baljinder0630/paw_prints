@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key? key}) : super(key: key);
@@ -15,7 +16,18 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Setting"),
+        title: GradientText(
+          'Settings',
+          style: TextStyle(
+            fontSize: 25,
+          ),
+          colors: [
+            Colors.amber.shade800,
+            Colors.amber.shade700,
+            Colors.amber.shade600,
+            Colors.amber.shade500
+          ],
+        ),
       ),
       body: Center(
         child: SettingsList(

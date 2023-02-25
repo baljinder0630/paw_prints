@@ -34,7 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
         stream: navBarStream.stream,
         builder: (context, snapshot) {
           return Scaffold(
-            appBar: AppBar(
+            appBar:
+            AppBar(
                 actions: [
                   if (_bottomNavIndex == 3) ...[
                     IconButton(
