@@ -75,9 +75,6 @@ class _CreateProfileState extends State<CreateProfile> {
         .collection("User")
         .doc(widget.firebaseUser)
         .set(widget.usermodel.toMap())
-        .whenComplete(() {
-          FirebaseHelper.currentAppUser = widget.firebaseUser;
-        })
         .onError((error, stackTrace) => showDialog(
             context: context,
             builder: (context) {
@@ -96,12 +93,13 @@ class _CreateProfileState extends State<CreateProfile> {
               );
             }))
         .then((value) {
-          log("user sucessfully created");
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) {
-            return MyHomePage();
-          }));
-        });
+      log("user sucessfully created");
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+        return MyHomePage(
+          userModel: widget.usermodel,
+        );
+      }));
+    });
   }
 
   //

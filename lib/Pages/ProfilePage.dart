@@ -26,9 +26,12 @@ class _PageTwoState extends State<ProfilePage> {
               ),
               CircleAvatar(
                 radius: 50,
-                backgroundImage: NetworkImage(
-                  widget.userModel.avatar.toString(),
-                ),
+                backgroundImage: widget.userModel.avatar != ""
+                    ? NetworkImage(
+                        widget.userModel.avatar.toString(),
+                      )
+                    : null,
+                foregroundImage: AssetImage('assets/userimage.png'),
               ),
               Text(
                 widget.userModel.username.toString(),
