@@ -184,7 +184,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
                   children: [
                     IconButton(
                       icon: petModel.likedBy!.contains(userModel.uid)
-                          ? Icon(Icons.thumb_up, color: Colors.red)
+                          ? Icon(Icons.thumb_up, color: Colors.blue.shade600)
                           : Icon(Icons.thumb_up_alt_outlined,
                               color: Colors.grey),
                       iconSize: 20,
@@ -218,7 +218,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
           ),
           ExpansionTile(
             childrenPadding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            backgroundColor: Colors.blue.shade300,
+            backgroundColor: Colors.grey.shade600,
             title: Text(
               "Description",
               style: TextStyle(fontSize: 15, color: Colors.white),
