@@ -54,14 +54,6 @@ class _LoginPage extends State<LoginPage> {
       log("Sucessfully login");
       FirebaseHelper.currentAppUser = await FirebaseHelper.getUserModelByID(
           credential.user!.uid.toString());
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) {
-      //     return NewHomePage(
-      //       userModel: FirebaseHelper.currentAppUser,
-      //     );
-      //   }),
-      // );
     }
     _submitted = false;
 
@@ -118,7 +110,7 @@ class _LoginPage extends State<LoginPage> {
                             prefixIcon: Icon(Icons.email),
                             hintText: "Email",
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.black,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
@@ -148,7 +140,7 @@ class _LoginPage extends State<LoginPage> {
                             prefixIcon: Icon(Icons.password),
                             hintText: "Password",
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Colors.black,
                             suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
