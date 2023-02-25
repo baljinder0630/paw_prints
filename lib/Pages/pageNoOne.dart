@@ -24,15 +24,11 @@ class _PageZeroState extends State<PageNoOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Container(
-        padding: EdgeInsets.all(8.0),
-        child: FloatingActionButton(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),          
-          backgroundColor: Colors.amber,
-          tooltip: "Search in nearby location",
-          onPressed: (() {}),
-          child: Icon(Icons.location_searching_rounded),
-        ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColorLight,
+        tooltip: "Search in nearby location",
+        onPressed: (() {}),
+        child: Icon(Icons.location_searching_rounded),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: Container(
@@ -172,7 +168,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
                   children: [
                     IconButton(
                       icon: petModel.likedBy!.contains(userModel.uid)
-                          ? Icon(Icons.thumb_up, color: Colors.red)
+                          ? Icon(Icons.thumb_up, color: Colors.blue.shade600)
                           : Icon(Icons.thumb_up_alt_outlined,
                               color: Colors.grey),
                       iconSize: 20,
@@ -206,7 +202,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
           ),
           ExpansionTile(
             childrenPadding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            backgroundColor: Colors.blue.shade300,
+            backgroundColor: Colors.grey.shade600,
             title: Text(
               "Description",
               style: TextStyle(fontSize: 15, color: Colors.black),
