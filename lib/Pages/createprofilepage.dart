@@ -3,12 +3,10 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/HomePage.dart';
 
 class CreateProfile extends StatefulWidget {
@@ -42,19 +40,32 @@ class _CreateProfileState extends State<CreateProfile> {
     log("message1");
     if (BeforeCrop != null) {
       File? FinalImage = await ImageCropper().cropImage(
-        sourcePath: BeforeCrop.path,
-        compressQuality: 20,
-        aspectRatioPresets: [
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio16x9
-        ],
-      );
-      setState(() {
-        UserFinalImage = FinalImage;
-      });
+          sourcePath: BeforeCrop.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          compressQuality: 20
+          // aspectRatioPresets: [
+          //   CropAspectRatioPreset.square,
+          //   CropAspectRatioPreset.ratio3x2,
+          //   CropAspectRatioPreset.original,
+          //   CropAspectRatioPreset.ratio4x3,
+          //   CropAspectRatioPreset.ratio16x9
+          // ],
+          // androidUiSettings: AndroidUiSettings(
+          //     toolbarTitle: 'Cropper',
+          //     toolbarColor: Colors.deepOrange,
+          //     toolbarWidgetColor: Colors.white,
+          //     initAspectRatio: CropAspectRatioPreset.original,
+          //     lockAspectRatio: false),
+          // iosUiSettings: IOSUiSettings(
+          //   minimumAspectRatio: 1.0,
+          // )
+          );
+
+      if (FinalImage != null) {
+        setState(() {
+          UserFinalImage = FinalImage;
+        });
+      }
     }
   }
 
@@ -174,7 +185,7 @@ class _CreateProfileState extends State<CreateProfile> {
                   prefixIcon: Icon(Icons.person),
                   hintText: "UserName",
                   filled: true,
-                  fillColor: Colors.black,
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(80.0),
