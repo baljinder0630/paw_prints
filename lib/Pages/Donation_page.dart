@@ -40,20 +40,22 @@ class _DonatePetState extends State<DonatePet> {
   void imagecrop(XFile BeforeCrop) async {
     log("message1");
     if (BeforeCrop != null) {
-      File? FinalImage = await ImageCropper()
-          .cropImage(
-              sourcePath: BeforeCrop.path,
-              aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-              compressQuality: 20,
-              aspectRatioPresets: [
-                CropAspectRatioPreset.square,
-              ],
-              cropStyle: CropStyle.rectangle
-         
-              )
-          .then((value) {
-        log("Done");
-      });
+      File? FinalImage = await ImageCropper().cropImage(
+          sourcePath: BeforeCrop.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          compressQuality: 20,
+          aspectRatioPresets: [
+            CropAspectRatioPreset.square,
+          ],
+          androidUiSettings: AndroidUiSettings(
+              toolbarTitle: 'Cropper',
+              toolbarColor: Colors.deepOrange,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false),
+          iosUiSettings: IOSUiSettings(
+            minimumAspectRatio: 1.0,
+          ));
 
       if (FinalImage != null) {
         setState(() {
@@ -136,7 +138,7 @@ class _DonatePetState extends State<DonatePet> {
                 prefixIcon: Icon(Icons.pets),
                 hintText: "Pet Name",
                 filled: true,
-                fillColor: Colors.black,
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(80.0),
@@ -181,7 +183,7 @@ class _DonatePetState extends State<DonatePet> {
                 prefixIcon: Icon(Icons.document_scanner_rounded),
                 hintText: "Pet Description",
                 filled: true,
-                fillColor: Colors.black,
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(80.0),
@@ -189,6 +191,11 @@ class _DonatePetState extends State<DonatePet> {
                     borderSide: BorderSide(color: Colors.teal)),
               ),
             ),
+            // TextField(
+            //   controller: _petDOB,
+            //   keyboardType: TextInputType.datetime,
+            //   decoration: InputDecoration(hintText: "Pet dob"),
+            // ),
             TextButton(
                 onPressed: () async {
                   DateTime? _selectedDate = await showDatePicker(
@@ -205,6 +212,7 @@ class _DonatePetState extends State<DonatePet> {
                   log(_selectedDate.toString());
                 },
                 child: Text("Pick DOB")),
+
             TextButton(
               child: Text("Location"),
               onPressed: () {

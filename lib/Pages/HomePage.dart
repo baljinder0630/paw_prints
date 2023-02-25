@@ -8,7 +8,9 @@ import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
 import 'package:paw_prints/Pages/ProfilePage.dart';
-import 'package:paw_prints/Pages/successStories.dart';
+import 'package:paw_prints/Pages/page0.dart';
+import 'package:paw_prints/Pages/page1.dart';
+import 'package:paw_prints/Pages/settingPage.dart';
 import 'package:paw_prints/main.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -64,15 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
             //
             //
             body: _bottomNavIndex == 0
-                ? PageZero(userModel: widget.userModel)
-                : _bottomNavIndex == 3
-                    ? ProfilePage(userModel: widget.userModel)
-                    : Container(
-                        child: Text(
-                          _bottomNavIndex.toString(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                ? PageOne(userModel: widget.userModel)
+                : _bottomNavIndex == 1
+                    ? PageZero(userModel: widget.userModel)
+                    : _bottomNavIndex == 2
+                        ? SettingPage()
+                        : ProfilePage(userModel: widget.userModel),
             bottomNavigationBar: AnimatedBottomNavigationBar(
               activeColor: Theme.of(context).primaryColor,
               backgroundColor: Color.fromARGB(255, 59, 58, 58),
