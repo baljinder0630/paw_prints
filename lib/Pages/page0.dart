@@ -29,23 +29,28 @@ class _PageZeroState extends State<PageZero> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: EdgeInsets.only(top: 10.0),
                 width: double.infinity,
                 child: CarouselSlider(
                   items: [
                     Card(
+                      margin: EdgeInsets.all(0.0),
                       child: Image.asset("assets/Pet1.jpg", fit: BoxFit.cover),
                     ),
                     Card(
+                      margin: EdgeInsets.all(0.0),
                       child: Image.asset("assets/Pet2.png", fit: BoxFit.cover),
                     ),
                     Card(
+                      margin: EdgeInsets.all(0.0),
                       child: Image.asset("assets/Pet3.jpg", fit: BoxFit.cover),
                     ),
                     Card(
+                      margin: EdgeInsets.all(0.0),
                       child: Image.asset("assets/Pet4.jpg", fit: BoxFit.cover),
                     ),
                     Card(
+                      margin: EdgeInsets.all(0.0),
                       child: Image.asset("assets/Pet5.jpg", fit: BoxFit.cover),
                     ),
                   ],
@@ -55,14 +60,6 @@ class _PageZeroState extends State<PageZero> {
                     // aspectRatio: 2.0,
                   ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return DonatePet(usermodel: widget.userModel);
-                  }));
-                },
-                child: Text("Donate pet"),
               ),
               StreamBuilder<QuerySnapshot>(
                 stream:
@@ -166,8 +163,6 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
           ),
           Container(
             height: 50,
-            // width: 300,
-            // color: Colors.blue,
             child: Wrap(
               children: [
                 Row(
