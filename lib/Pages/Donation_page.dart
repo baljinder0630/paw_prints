@@ -141,7 +141,7 @@ class _DonatePetState extends State<DonatePet> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(80.0),
                     ),
-                    borderSide: BorderSide(color: Colors.teal)),
+                    borderSide: BorderSide(color: Colors.amber)),
               ),
             ),
             TextButton(
@@ -186,7 +186,7 @@ class _DonatePetState extends State<DonatePet> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(80.0),
                     ),
-                    borderSide: BorderSide(color: Colors.teal)),
+                    borderSide: BorderSide(color: Colors.amber)),
               ),
             ),
             TextButton(
@@ -223,7 +223,18 @@ class _DonatePetState extends State<DonatePet> {
                   width: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Color(0xFF21899C),
+                    //color: Colors.amber,
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      stops: [0.1,0.5,0.7,0.9],
+                        colors: [
+                          Colors.amber.shade800,
+                          Colors.amber.shade700,
+                          Colors.amber.shade600,
+                          Colors.amber.shade500
+                          ],
+                    ),
                   ),
                   child: Center(
                       child: Text(

@@ -7,6 +7,7 @@ import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/HomePage.dart';
 import 'package:paw_prints/Pages/createprofilepage.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -101,12 +102,25 @@ class _LoginPage extends State<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      """Login""",
+                    // Text(
+                    //   """Login""",
+                    //   style: TextStyle(
+                    //       color: Theme.of(context).primaryColor,
+                    //       fontSize: 45,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    GradientText(
+                      'Login',
                       style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 45,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 45.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      colors: [
+                        Colors.amber.shade800,
+                        Colors.amber.shade700,
+                        Colors.amber.shade600,
+                        Colors.amber.shade500
+                      ],
                     ),
                     SizedBox(
                       height: 60,
@@ -205,6 +219,17 @@ class _LoginPage extends State<LoginPage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             color: Theme.of(context).primaryColor,
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              stops: [0.1,0.5,0.7,0.9],
+                              colors: [
+                                Colors.amber.shade800,
+                                Colors.amber.shade700,
+                                Colors.amber.shade600,
+                                Colors.amber.shade500
+                              ],
+                            ),
                           ),
                           child: Center(
                               child: Text(
