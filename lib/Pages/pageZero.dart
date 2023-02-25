@@ -9,56 +9,47 @@ import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/AddPost.dart';
 import 'package:paw_prints/Pages/postDetailPage.dart';
 
-class PageOne extends StatefulWidget {
+class PageNoZero extends StatefulWidget {
   UserModel userModel;
 
-  PageOne({required this.userModel, Key? key}) : super(key: key);
+  PageNoZero({required this.userModel, Key? key}) : super(key: key);
   @override
-  State<PageOne> createState() => _PageOneState();
+  State<PageNoZero> createState() => _PageOneState();
 }
 
-class _PageOneState extends State<PageOne> {
+class _PageOneState extends State<PageNoZero> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('posts')
-              .orderBy('timeStamp', descending: true)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Center(child: Text('Something went wrong'));
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('posts')
+            .orderBy('timeStamp', descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Center(child: Text('Something went wrong'));
+          }
+          if (snapshot.hasData) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
             }
-            if (snapshot.hasData) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
-              return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) {
-                  log((querySnapshot.docs[index].data() as Map<String, dynamic>)
-                      .toString());
-                  PostModel postModel = PostModel.fromMap(
-                      querySnapshot.docs[index].data() as Map<String, dynamic>);
-                  return postWidget(context, postModel, widget.userModel);
-                },
-              );
-            }
-            return Center(child: CircularProgressIndicator());
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          tooltip: "Add Post",
-          child: Icon(Icons.add_a_photo_outlined),
-          backgroundColor: Color(0xFF21899C),
-          onPressed: (() {
-            Navigator.push(context, MaterialPageRoute(builder: ((context) {
-              return AddPost();
-            })));
-          }),
-        ));
+            QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                log((querySnapshot.docs[index].data() as Map<String, dynamic>)
+                    .toString());
+                PostModel postModel = PostModel.fromMap(
+                    querySnapshot.docs[index].data() as Map<String, dynamic>);
+                return postWidget(context, postModel, widget.userModel);
+              },
+            );
+          }
+          return Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
   }
 }
 

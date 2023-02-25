@@ -10,16 +10,16 @@ import 'package:paw_prints/Pages/Donation_page.dart';
 
 import '../Models/petModel.dart';
 
-class PageZero extends StatefulWidget {
+class PageNoOne extends StatefulWidget {
   UserModel userModel;
 
-  PageZero({required this.userModel, Key? key}) : super(key: key);
+  PageNoOne({required this.userModel, Key? key}) : super(key: key);
 
   @override
-  State<PageZero> createState() => _PageZeroState();
+  State<PageNoOne> createState() => _PageZeroState();
 }
 
-class _PageZeroState extends State<PageZero> {
+class _PageZeroState extends State<PageNoOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

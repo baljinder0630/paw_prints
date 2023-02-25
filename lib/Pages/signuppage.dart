@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/createprofilepage.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import 'loginpage.dart';
 
