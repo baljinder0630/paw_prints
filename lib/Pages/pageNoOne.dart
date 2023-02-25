@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,29 +27,60 @@ class _PageZeroState extends State<PageNoOne> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-<<<<<<< HEAD:lib/Pages/pageOne.dart
-              DropdownButton<String>(
-                
-                isExpanded: true,
-                value: dropdownValue,
-                items: <String>['Dog', 'Cat', 'Cow', 'other']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: TextStyle(fontSize: 30, color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Container(
+                    height: 40,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Theme.of(context).primaryColor,
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        stops: [0.1, 0.5, 0.7, 0.9],
+                        colors: [
+                          Colors.amber.shade800,
+                          Colors.amber.shade700,
+                          Colors.amber.shade600,
+                          Colors.amber.shade500
+                        ],
+                      ),
                     ),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownValue = newValue;
-                  });
-                },
+                    child: Center(
+                        child: Text(
+                      "Search in nearby location",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    )),
+                  ),
               ),
-=======
->>>>>>> bda6cece99f74c42bf0f812b240f10073583534e:lib/Pages/pageNoOne.dart
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: DropdownButton<String>(
+                  alignment: Alignment.center,
+                  isExpanded: true,
+                  value: dropdownValue,
+                  items: <String>['Dog', 'Cat', 'Cow', 'other']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue;
+                    });
+                  },
+                ),
+              ),
               StreamBuilder<QuerySnapshot>(
                 stream:
                     FirebaseFirestore.instance.collection("Pets").snapshots(),
@@ -77,12 +107,7 @@ class _PageZeroState extends State<PageNoOne> {
                           querySnapshot.docs[index].data()
                               as Map<String, dynamic>);
                       return InkWell(
-                        onTap: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: ((context) {
-                          //   return PetDetail(petModel: petModel);
-                          // })));
-                        },
+                        onTap: () {},
                         child: petWidget(context, petModel, widget.userModel),
                       );
                     },

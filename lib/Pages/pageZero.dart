@@ -20,7 +20,6 @@ class _PageOneState extends State<PageNoZero> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -88,35 +87,6 @@ class _PageOneState extends State<PageNoZero> {
             ],
           ),
         ),
-=======
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('posts')
-            .orderBy('createdTime', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(child: Text('Something went wrong'));
-          }
-          if (snapshot.hasData) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
-            return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                log((querySnapshot.docs[index].data() as Map<String, dynamic>)
-                    .toString());
-                PostModel postModel = PostModel.fromMap(
-                    querySnapshot.docs[index].data() as Map<String, dynamic>);
-                return postWidget(context, postModel, widget.userModel);
-              },
-            );
-          }
-          return Center(child: CircularProgressIndicator());
-        },
->>>>>>> bda6cece99f74c42bf0f812b240f10073583534e
       ),
     );
   }
