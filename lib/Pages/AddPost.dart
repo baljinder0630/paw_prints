@@ -99,6 +99,7 @@ class _AddPostState extends State<AddPost> {
           caption: _captionController.text.trim(),
           imgUrl: url,
           createdTime: DateTime.now().toString(),
+          createdByAvatar: widget.userModel.avatar,
           userId: FirebaseAuth.instance.currentUser!.uid,
           username: widget.userModel.username);
       await firestore
@@ -183,19 +184,19 @@ class _AddPostState extends State<AddPost> {
                     ]),
                   ),
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.transparent,
-                        onSurface: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        padding: EdgeInsets.all(10),
-                        //make color or elevated button transparent
-                      ),
-                      onPressed: _isUploading ? null : _uploadPost,
-                      child: _isUploading
-                          ? const CircularProgressIndicator()
-                          : const Text('Upload'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                      onSurface: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      padding: EdgeInsets.all(10),
+                      //make color or elevated button transparent
                     ),
+                    onPressed: _isUploading ? null : _uploadPost,
+                    child: _isUploading
+                        ? const CircularProgressIndicator()
+                        : const Text('Upload'),
                   ),
+                ),
               ],
             ),
           ),

@@ -2,11 +2,10 @@
 
 import 'dart:developer';
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
-import 'package:paw_prints/Pages/Donation_page.dart';
+import 'package:paw_prints/Pages/PetDetail.dart';
 
 import '../Models/petModel.dart';
 
@@ -28,6 +27,7 @@ class _PageZeroState extends State<PageNoOne> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              TextButton(onPressed: () {}, child: Text("Filter By location")),
               StreamBuilder<QuerySnapshot>(
                 stream:
                     FirebaseFirestore.instance.collection("Pets").snapshots(),
@@ -55,10 +55,10 @@ class _PageZeroState extends State<PageNoOne> {
                               as Map<String, dynamic>);
                       return InkWell(
                         onTap: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: ((context) {
-                          //   return PetDetail(petModel: petModel);
-                          // })));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: ((context) {
+                            return PetDetail(petModel: petModel);
+                          })));
                         },
                         child: petWidget(context, petModel, widget.userModel),
                       );
