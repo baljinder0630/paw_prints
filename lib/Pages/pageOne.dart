@@ -1,13 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
-
 import '../Models/petModel.dart';
 
 class PageNoOne extends StatefulWidget {
@@ -20,6 +18,8 @@ class PageNoOne extends StatefulWidget {
 }
 
 class _PageZeroState extends State<PageNoOne> {
+  String? dropdownValue = 'Dog';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,38 +28,25 @@ class _PageZeroState extends State<PageNoOne> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                margin: EdgeInsets.only(top: 10.0),
-                width: double.infinity,
-                child: CarouselSlider(
-                  items: [
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet1.jpg", fit: BoxFit.cover),
+              DropdownButton<String>(
+                
+                isExpanded: true,
+                value: dropdownValue,
+                items: <String>['Dog', 'Cat', 'Cow', 'other']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value,
+                      style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet2.png", fit: BoxFit.cover),
-                    ),
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet3.jpg", fit: BoxFit.cover),
-                    ),
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet4.jpg", fit: BoxFit.cover),
-                    ),
-                    Card(
-                      margin: EdgeInsets.all(0.0),
-                      child: Image.asset("assets/Pet5.jpg", fit: BoxFit.cover),
-                    ),
-                  ],
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    enlargeCenterPage: true,
-                    // aspectRatio: 2.0,
-                  ),
-                ),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownValue = newValue;
+                  });
+                },
               ),
               StreamBuilder<QuerySnapshot>(
                 stream:
@@ -98,7 +85,7 @@ class _PageZeroState extends State<PageNoOne> {
                     },
                   );
                 },
-              )
+              ),
             ],
           ),
         ),
@@ -139,7 +126,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: Colors.white),
                 ),
               )),
           Container(
@@ -206,7 +193,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
             backgroundColor: Colors.blue.shade300,
             title: Text(
               "Description",
-              style: TextStyle(fontSize: 15, color: Colors.black),
+              style: TextStyle(fontSize: 15, color: Colors.white),
             ),
             expandedAlignment: Alignment.topLeft,
             children: [
