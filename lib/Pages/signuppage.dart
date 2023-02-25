@@ -73,8 +73,6 @@ class _SignUpState extends State<SignUp> {
           .set(newuser.toMap())
           .then((value) {
         log("New User Created");
-      }).then((value) {
-        FirebaseHelper.currentAppUser = newuser;
       });
       Navigator.pushReplacement(
         context,

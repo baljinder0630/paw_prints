@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
 import 'package:paw_prints/Pages/ProfilePage.dart';
@@ -12,7 +12,8 @@ import 'package:paw_prints/Pages/page0.dart';
 import 'package:paw_prints/main.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  UserModel userModel;
+  MyHomePage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               backgroundColor: Color.fromARGB(255, 236, 219, 67),
               onPressed: (() {
                 Navigator.push(context, MaterialPageRoute(builder: ((context) {
-                  return DonatePet(usermodel: FirebaseHelper.currentAppUser);
+                  return DonatePet(usermodel: widget.userModel);
                 })));
               }),
               child: Icon(Icons.add),
@@ -62,9 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
             //
             //
             body: _bottomNavIndex == 0
-                ? PageZero(userModel: FirebaseHelper.currentAppUser)
+                ? PageZero(userModel: widget.userModel)
                 : _bottomNavIndex == 3
-                    ? ProfilePage(userModel: FirebaseHelper.currentAppUser)
+                    ? ProfilePage(userModel: widget.userModel)
                     : Container(
                         child: Text(
                           _bottomNavIndex.toString(),

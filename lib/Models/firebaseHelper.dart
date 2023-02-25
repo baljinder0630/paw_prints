@@ -9,7 +9,6 @@ import 'chatroomModel.dart';
 
 class FirebaseHelper {
   // Storing current user when entering app
-  static late UserModel currentAppUser;
 
   // getting user Model from uid
   static Future<UserModel> getUserModelByID(String Uid) async {
@@ -33,11 +32,12 @@ class FirebaseHelper {
   // }
 
   // Creating chatroom
-  static Future<Chatroommodel?> getchatRoombyId(targetUser, context) async {
+  static Future<Chatroommodel?> getchatRoombyId(
+      targetUser, context, currentUserModel) async {
     QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collection("ChatRoom")
         .where("particpants.${targetUser.uid}", isEqualTo: true)
-        .where("particpants.${currentAppUser}", isEqualTo: true)
+        .where("particpants.${currentUserModel.uid}", isEqualTo: true)
         .get();
     print(snapshot.docs.length);
     if (snapshot.docs.length > 0) {
@@ -55,7 +55,7 @@ class FirebaseHelper {
     } else {
       //Make NEw Chatroom
       Chatroommodel newchatroom = Chatroommodel(
-          participants: {targetUser.uid: true, currentAppUser.uid!: true},
+          participants: {targetUser.uid: true, currentUserModel.uid: true},
           chatroomuid: "qwerty",
           lastmessage: "");
 

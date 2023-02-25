@@ -85,6 +85,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.1"
+  checked_yaml:
+    dependency: transitive
+    description:
+      name: checked_yaml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  cli_util:
+    dependency: transitive
+    description:
+      name: cli_util
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.5"
   clock:
     dependency: transitive
     description:
@@ -283,13 +297,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.0"
-  flutter_lints:
+  flutter_launcher_icons:
     dependency: "direct dev"
     description:
-      name: flutter_lints
+      name: flutter_launcher_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "0.11.0"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -405,6 +419,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.3.0"
   image_cropper:
     dependency: "direct main"
     description:
@@ -462,16 +483,20 @@ packages:
     source: hosted
 <<<<<<< HEAD
     version: "0.6.4"
+<<<<<<< HEAD
+  json_annotation:
+=======
 =======
     version: "0.6.5"
 >>>>>>> a86d6cd47838d3077c5e1aaa5f10fdbd212b7b99
   lints:
+>>>>>>> 39bccd27a93b7b24fb71841ec0a9a0c7a7e02214
     dependency: transitive
     description:
-      name: lints
+      name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "4.7.0"
   lottie:
     dependency: "direct main"
     description:
@@ -764,7 +789,18 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
+    version: "6.1.0"
+  yaml:
+    dependency: transitive
+    description:
+      name: yaml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.1"
+=======
     version: "5.3.1"
+>>>>>>> 39bccd27a93b7b24fb71841ec0a9a0c7a7e02214
 sdks:
 <<<<<<< HEAD
   dart: ">=2.17.0-0 <3.0.0"

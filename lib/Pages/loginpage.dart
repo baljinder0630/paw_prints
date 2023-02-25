@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/HomePage.dart';
 import 'package:paw_prints/Pages/createprofilepage.dart';
@@ -54,15 +55,15 @@ class _LoginPage extends State<LoginPage> {
     }
     if (credential != null) {
       log("Sucessfully login");
-      FirebaseHelper.currentAppUser = await FirebaseHelper.getUserModelByID(
+      UserModel userModel = await FirebaseHelper.getUserModelByID(
           credential.user!.uid.toString());
-      if (FirebaseHelper.currentAppUser.username == null) {
+      if (userModel.username == null) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) {
             return CreateProfile(
               firebaseUser: FirebaseAuth.instance.currentUser,
-              usermodel: FirebaseHelper.currentAppUser,
+              usermodel: userModel,
             );
           }),
         );
@@ -70,7 +71,9 @@ class _LoginPage extends State<LoginPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) {
-          return MyHomePage();
+          return MyHomePage(
+            userModel: userModel,
+          );
         }),
       );
     }
