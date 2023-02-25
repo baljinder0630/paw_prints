@@ -6,13 +6,13 @@ class PostModel {
   String? imgUrl;
   String? userId;
   String? username;
-  var timeStamp;
+  String? createdTime;
   List<dynamic>? likes = [];
   PostModel(
       {this.id,
       this.caption,
       this.imgUrl,
-      this.timeStamp,
+      this.createdTime,
       this.userId,
       this.username,
       this.likes});
@@ -23,7 +23,7 @@ class PostModel {
     imgUrl = map['imgUrl'];
     userId = map['userId'];
     username = map['username'];
-    timeStamp = map['timeStamp'];
+    createdTime = map['createdTime'];
     likes = map['likes'];
   }
   Map<String, dynamic> toMap() {
@@ -33,7 +33,7 @@ class PostModel {
       "imgUrl": imgUrl,
       "userId": userId,
       "username": username,
-      "timeStamp": timeStamp,
+      "createdTime": createdTime,
       "likes": likes
     };
   }

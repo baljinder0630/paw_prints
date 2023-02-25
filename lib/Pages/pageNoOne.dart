@@ -28,6 +28,7 @@ class _PageZeroState extends State<PageNoOne> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+<<<<<<< HEAD:lib/Pages/pageOne.dart
               DropdownButton<String>(
                 
                 isExpanded: true,
@@ -48,6 +49,8 @@ class _PageZeroState extends State<PageNoOne> {
                   });
                 },
               ),
+=======
+>>>>>>> bda6cece99f74c42bf0f812b240f10073583534e:lib/Pages/pageNoOne.dart
               StreamBuilder<QuerySnapshot>(
                 stream:
                     FirebaseFirestore.instance.collection("Pets").snapshots(),

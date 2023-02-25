@@ -6,8 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/Post.dart';
 import 'package:paw_prints/Models/UserModel.dart';
-import 'package:paw_prints/Models/firebaseHelper.dart';
-import 'package:paw_prints/Pages/AddPost.dart';
 import 'package:paw_prints/Pages/postDetailPage.dart';
 
 class PageNoZero extends StatefulWidget {
@@ -22,6 +20,7 @@ class _PageOneState extends State<PageNoZero> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -89,6 +88,35 @@ class _PageOneState extends State<PageNoZero> {
             ],
           ),
         ),
+=======
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('posts')
+            .orderBy('createdTime', descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Center(child: Text('Something went wrong'));
+          }
+          if (snapshot.hasData) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                log((querySnapshot.docs[index].data() as Map<String, dynamic>)
+                    .toString());
+                PostModel postModel = PostModel.fromMap(
+                    querySnapshot.docs[index].data() as Map<String, dynamic>);
+                return postWidget(context, postModel, widget.userModel);
+              },
+            );
+          }
+          return Center(child: CircularProgressIndicator());
+        },
+>>>>>>> bda6cece99f74c42bf0f812b240f10073583534e
       ),
     );
   }
@@ -112,7 +140,32 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
           title: Text(postModel.username.toString() == ""
               ? "<No Title>"
               : postModel.username.toString()),
-          //subtitle: Text((postModel.timeStamp).toString()),
+          subtitle: DateTime.now()
+                      .difference(
+                          DateTime.tryParse(postModel.createdTime.toString())!)
+                      .inDays >
+                  0
+              ? Text(DateTime.now()
+                      .difference(
+                          DateTime.tryParse(postModel.createdTime.toString())!)
+                      .inDays
+                      .toString() +
+                  "days ago")
+              : DateTime.now().difference(DateTime.tryParse(postModel.createdTime.toString())!).inHours >
+                      0
+                  ? Text(DateTime.now()
+                          .difference(DateTime.tryParse(
+                              postModel.createdTime.toString())!)
+                          .inHours
+                          .toString() +
+                      "hrs ago")
+                  : DateTime.now()
+                              .difference(
+                                  DateTime.tryParse(postModel.createdTime.toString())!)
+                              .inMinutes >
+                          0
+                      ? Text(DateTime.now().difference(DateTime.tryParse(postModel.createdTime.toString())!).inMinutes.toString() + "mins ago")
+                      : Text(DateTime.now().difference(DateTime.tryParse(postModel.createdTime.toString())!).inSeconds.toString() + "sec ago"),
         ),
         InkWell(
             onTap: (() =>
@@ -127,17 +180,17 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
         Row(
           children: [
             IconButton(
-              icon: postModel.likes!.contains(usermodel)
+              icon: postModel.likes!.contains(usermodel.uid)
                   ? Icon(Icons.thumb_up, color: Colors.red)
                   : Icon(Icons.thumb_up_alt_outlined, color: Colors.grey),
               iconSize: 20,
               onPressed: () async {
-                if (postModel.likes!.contains(usermodel)) {
+                if (postModel.likes!.contains(usermodel.uid)) {
                   log("Empty");
-                  postModel.likes!.remove(usermodel);
+                  postModel.likes!.remove(usermodel.uid);
                 } else {
                   log("non Empty");
-                  postModel.likes!.add(usermodel);
+                  postModel.likes!.add(usermodel.uid);
                 }
                 await FirebaseFirestore.instance
                     .collection("posts")
@@ -155,7 +208,11 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
               style: TextStyle(fontSize: 18, color: Colors.black),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PostDetail(postModel: postModel);
+                }));
+              },
               icon: Icon(Icons.insert_comment_rounded),
               color: Colors.grey,
               highlightColor: Colors.transparent,
