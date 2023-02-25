@@ -95,7 +95,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           TextSpan(
-            text: 'PetAdoptionApp',
+            text: 'Paw Prints',
             style: TextStyle(
               fontWeight: FontWeight.w800,
               color: Colors.amber,
