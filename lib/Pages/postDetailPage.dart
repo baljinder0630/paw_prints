@@ -124,7 +124,7 @@ class _PostDetailState extends State<PostDetail> {
                     controller: _commentController,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
-                        color: Colors.blue,
+                        color: Colors.white,
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               log("Comment state validated");
@@ -155,7 +155,7 @@ class _PostDetailState extends State<PostDetail> {
                           },
                           icon: Icon(
                             Icons.send,
-                            color: Colors.black,
+                            color: Colors.white,
                           )),
                       prefixIcon: Icon(Icons.comment_bank_outlined),
                       hintText: "Add Comment",

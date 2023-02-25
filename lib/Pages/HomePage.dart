@@ -41,42 +41,73 @@ class _MyHomePageState extends State<MyHomePage> {
 
             //
             //
-            floatingActionButton: FloatingActionButton(
-              tooltip: _bottomNavIndex == 0
-                  ? "Add Post"
-                  : _bottomNavIndex == 1
-                      ? "Want to donate Pet?"
-                      : _bottomNavIndex == 2
-                          ? "Log Out"
-                          : "Edit Profile",
-              backgroundColor: Theme.of(context).primaryColor,
-              onPressed: (() async {
-                _bottomNavIndex == 0
-                    ? Navigator.push(context,
-                        MaterialPageRoute(builder: ((context) {
-                        return AddPost(
-                          userModel: widget.userModel,
-                        );
-                      })))
+            floatingActionButton: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                      colors: [
+                        // Colors.amber.shade800,
+                        //  Colors.amber.shade700,
+                        Colors.amber.shade800,
+                        Colors.amber.shade700,
+                        Colors.amber.shade600,
+                        Colors.amber.shade500,
+                      ]
+                  )
+              ),
+              child: FloatingActionButton(
+                tooltip: _bottomNavIndex == 0
+                    ? "Add Post"
                     : _bottomNavIndex == 1
-                        ? Navigator.push(context,
-                            MaterialPageRoute(builder: ((context) {
-                            return DonatePet(usermodel: widget.userModel);
-                          })))
+                        ? "Want to donate Pet?"
                         : _bottomNavIndex == 2
-                            ? logout(context)
-                            : Navigator.push(context,
-                                MaterialPageRoute(builder: ((context) {
-                                return EditProfile();
-                              })));
-              }),
-              child: _bottomNavIndex == 0
-                  ? Icon(Icons.add_a_photo_outlined)
-                  : _bottomNavIndex == 1
-                      ? Icon(Icons.add)
+                            ? "Log Out"
+                            : "Edit Profile",
+                    backgroundColor: Colors.transparent,
+                 onPressed: (() async {
+                  _bottomNavIndex == 0
+                      ? Navigator.push(context,
+                          MaterialPageRoute(builder: ((context) {
+                          return AddPost(
+                            userModel: widget.userModel,
+                          );
+                        })))
+                      : _bottomNavIndex == 1
+                          ? Navigator.push(context,
+                              MaterialPageRoute(builder: ((context) {
+                              return DonatePet(usermodel: widget.userModel);
+                            })))
+                          : _bottomNavIndex == 2
+                              ? logout(context)
+                              : Navigator.push(context,
+                                  MaterialPageRoute(builder: ((context) {
+                                  return EditProfile();
+                                })));
+                }),
+                child: Container(
+                  child: _bottomNavIndex == 0
+                      ? Icon(Icons.add_a_photo_outlined,
+                  )
+                      : _bottomNavIndex == 1
+                      ? Icon(Icons.add
+                  )
                       : _bottomNavIndex == 2
-                          ? Icon(Icons.logout)
-                          : Icon(Icons.edit),
+                      ? Icon(Icons.logout)
+                      : Icon(Icons.edit),
+
+                  // decoration: BoxDecoration(
+                  //   gradient: LinearGradient(
+                  //     colors: [
+                  //       Colors.amber.shade800,
+                  //       Colors.amber.shade700,
+                  //       Colors.amber.shade600,
+                  //       Colors.amber.shade500
+                  //     ]
+                  //   )
+                  // ),
+                ),
+
+              ),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
