@@ -5,8 +5,8 @@ import 'package:paw_prints/Pages/HomePage.dart';
 
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -17,9 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF21899C)),
-        primaryColor: const Color(0xFF21899C),
+      darkTheme: ThemeData(
+        appBarTheme: const AppBarTheme(color: Color.fromARGB(255, 246, 231, 93)),
+        primaryColor: const Color.fromARGB(255, 246, 231, 93),
+        brightness: Brightness.dark,
       ),
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
