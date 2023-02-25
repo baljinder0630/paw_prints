@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +24,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
+              tooltip: "Logout",
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
                 Restart.restartApp();
@@ -46,9 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
          child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-      //
-      //
       body: StreamBuilder<int>(
           stream: navBarStream.stream,
           builder: (context, snapshot) {

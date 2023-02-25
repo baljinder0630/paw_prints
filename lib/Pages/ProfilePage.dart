@@ -45,7 +45,7 @@ class _PageTwoState extends State<ProfilePage> {
                         child: Text(
                           "For Donation",
                           style:
-                              TextStyle(color: Color(0xFF21899C), fontWeight: FontWeight.bold),
+                              TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
@@ -107,7 +107,7 @@ class _PageTwoState extends State<ProfilePage> {
                       child: Text(
                         "Adopted",
                         style:
-                            TextStyle(color: Color(0xFF21899C), fontWeight: FontWeight.bold),
+                            TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
@@ -172,7 +172,7 @@ class _PageTwoState extends State<ProfilePage> {
                         child: Text(
                           "Liked",
                           style:
-                              TextStyle(color: Color(0xFF21899C), fontWeight: FontWeight.bold),
+                              TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
