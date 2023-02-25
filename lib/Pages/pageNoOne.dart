@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
 import '../Models/petModel.dart';
+import '';
 
 class PageNoOne extends StatefulWidget {
   UserModel userModel;
@@ -22,41 +23,16 @@ class _PageZeroState extends State<PageNoOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Search in nearby location",
+        onPressed: (() {}),
+        child: Icon(Icons.location_searching_rounded),
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Container(
-                    height: 40,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Theme.of(context).primaryColor,
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        stops: [0.1, 0.5, 0.7, 0.9],
-                        colors: [
-                          Colors.amber.shade800,
-                          Colors.amber.shade700,
-                          Colors.amber.shade600,
-                          Colors.amber.shade500
-                        ],
-                      ),
-                    ),
-                    child: Center(
-                        child: Text(
-                      "Search in nearby location",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
-                    )),
-                  ),
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: DropdownButton<String>(
@@ -97,7 +73,7 @@ class _PageZeroState extends State<PageNoOne> {
                     );
                   }
 
-                  QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
+                  QuerySnapshot query Snapshot = snapshot.data as QuerySnapshot;
                   return ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
