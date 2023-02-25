@@ -13,50 +13,44 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child:Column(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: "Search"
+        child:Container(
+          child: SettingsList(
+            brightness: Brightness.dark,
+          darkTheme: SettingsThemeData(settingsListBackground: Color(0xFF1E1E1E), settingsSectionBackground: Color(0xFF1E1E1E),),
+          sections: [
+          SettingsSection(
+            title: Text('Common'),
+            tiles: <SettingsTile>[
+              SettingsTile.navigation(
+                leading: Icon(Icons.language),
+                title: Text('Language'),
+                value: Text('English'),
               ),
-            ),
-            SettingsList(
-            sections: [
-            SettingsSection(
-              title: Text('Common'),
-              tiles: <SettingsTile>[
-                SettingsTile.navigation(
-                  leading: Icon(Icons.language),
-                  title: Text('Language'),
-                  value: Text('English'),
-                ),
-                SettingsTile.switchTile(
-                  onToggle: (value) {},
-                  initialValue: true,
-                  leading: Icon(Icons.format_paint),
-                  title: Text('Enable custom theme'),
-                ),
-              ],
-
-            ),
-            SettingsSection(
-              title: Text('Account'),
-              tiles: <SettingsTile>[
-                SettingsTile.navigation(
-                  leading: Icon(Icons.phone),
-                  title: Text('Phone Number'),
-                ),
-                SettingsTile.navigation(
-                  leading: Icon(Icons.email),
-                  title: Text('Email'),
-                ),
-              ],
-              
-            ),
-      ],
-    ),
+              SettingsTile.switchTile(
+                onToggle: (value) {},
+                initialValue: true,
+                leading: Icon(Icons.format_paint),
+                title: Text('Enable custom theme'),
+              ),
+            ],
+          
+          ),
+          SettingsSection(
+            title: Text('Account'),
+            tiles: <SettingsTile>[
+              SettingsTile.navigation(
+                leading: Icon(Icons.phone),
+                title: Text('Phone Number'),
+              ),
+              SettingsTile.navigation(
+                leading: Icon(Icons.email),
+                title: Text('Email'),
+              ),
+            ],
+            
+          ),
           ],
+            ),
         ), 
     );
   }

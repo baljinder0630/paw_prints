@@ -282,7 +282,7 @@ class _LoginPage extends State<LoginPage> {
                                 )
                               ]),
                           child: IconButton(
-                            icon: Image.asset('assets/apple1.jpeg'),
+                            icon: Image.asset('assets/apple2.png'),
                             iconSize: 30,
                             onPressed: () {},
                           ),
