@@ -292,7 +292,7 @@ class _DonatePetState extends State<DonatePet> {
                         value: value,
                         child: Text(
                           value,
-                          style: TextStyle(fontSize: 30, color: Colors.white),
+                          style: TextStyle(fontSize: 15, color: Colors.white),
                         ),
                       );
                     }).toList(),

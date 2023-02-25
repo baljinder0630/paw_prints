@@ -7,12 +7,14 @@ class PostModel {
   String? userId;
   String? username;
   String? createdTime;
+  String? createdByAvatar;
   List<dynamic>? likes = [];
   PostModel(
       {this.id,
       this.caption,
       this.imgUrl,
       this.createdTime,
+      this.createdByAvatar,
       this.userId,
       this.username,
       this.likes});
@@ -23,6 +25,7 @@ class PostModel {
     imgUrl = map['imgUrl'];
     userId = map['userId'];
     username = map['username'];
+    createdByAvatar = map['createdByAvatar'];
     createdTime = map['createdTime'];
     likes = map['likes'];
   }
@@ -34,7 +37,8 @@ class PostModel {
       "userId": userId,
       "username": username,
       "createdTime": createdTime,
-      "likes": likes
+      "likes": likes,
+      "createdByAvatar": createdByAvatar
     };
   }
 }
