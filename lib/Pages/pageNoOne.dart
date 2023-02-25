@@ -20,7 +20,7 @@ class PageNoOne extends StatefulWidget {
 }
 
 class _PageZeroState extends State<PageNoOne> {
-  String? dropdownValue = 'Dog';
+  String? dropdownValue = 'Select';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +53,7 @@ class _PageZeroState extends State<PageNoOne> {
                   alignment: Alignment.center,
                   isExpanded: true,
                   value: dropdownValue,
-                  items: <String>['Dog', 'Cat', 'Cow', 'other']
+                  items: <String>['Select', 'Dog', 'Cat', 'Cow', 'other']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -72,8 +72,12 @@ class _PageZeroState extends State<PageNoOne> {
                 ),
               ),
               StreamBuilder<QuerySnapshot>(
-                stream:
-                    FirebaseFirestore.instance.collection("Pets").snapshots(),
+                stream: dropdownValue == 'Select'
+                    ? FirebaseFirestore.instance.collection("Pets").snapshots()
+                    : FirebaseFirestore.instance
+                        .collection("Pets")
+                        .where("category", isEqualTo: dropdownValue)
+                        .snapshots(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasError) {
                     return Center(

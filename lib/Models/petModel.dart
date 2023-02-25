@@ -10,6 +10,8 @@ class PetModel {
   String? buyedBy;
   double? lat;
   double? long;
+  String? category;
+
   List<dynamic>? likedBy;
 
   PetModel(
@@ -20,6 +22,7 @@ class PetModel {
       this.buyedBy,
       this.dob,
       this.pic,
+      this.category,
       this.description,
       required this.lat,
       required this.long});
@@ -32,6 +35,7 @@ class PetModel {
     dob = map['dob'];
     pic = map['pic'];
     petId = map['petId'];
+    category = map['category'];
     description = map['description'];
     lat = map['lat'];
     long = map['long'];
@@ -48,7 +52,8 @@ class PetModel {
       "description": description,
       "petId": petId,
       "lat": lat,
-      "long": long
+      "long": long,
+      "category": category
     };
   }
 }

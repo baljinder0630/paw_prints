@@ -34,6 +34,11 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, snapshot) {
           return Scaffold(
             appBar: AppBar(
+              actions: [
+                if (_bottomNavIndex == 3) ...[
+                  IconButton(onPressed: () {}, icon: Icon(Icons.settings))
+                ]
+              ],
               centerTitle: true,
               automaticallyImplyLeading: false,
               title: Text("Paw Prints"),

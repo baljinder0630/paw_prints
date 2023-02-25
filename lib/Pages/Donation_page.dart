@@ -93,6 +93,7 @@ class _DonatePetState extends State<DonatePet> {
         pic: networkurl,
         sellingBy: widget.usermodel.uid,
         petId: petId,
+        category: dropdownValue,
         name: _petName.text.trim(),
         description: _petDescription.text.trim(),
         dob: _dob.toString(),
@@ -137,40 +138,6 @@ class _DonatePetState extends State<DonatePet> {
       log("Lat:- " + lat.toString() + " Long:- " + long.toString());
     }
   }
-
-  // void _getCurrentLocation() async {
-  //   final position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.high);
-  //   setState(() {
-  //     _currentPosition = position;
-  //   });
-  // }
-
-  // Future<void> getCurrentPosition() async {
-  //   // Permission
-  //   LocationPermission permission = await Geolocator.checkPermission();
-  //   if (permission == LocationPermission.denied ||
-  //       permission == LocationPermission.deniedForever) {
-  //     log("Permission denied");
-  //     Geolocator.requestPermission();
-  //   } else {
-  //     log("Have location permissions");
-  //     try {
-  //       Position currentPosition = await Geolocator.getCurrentPosition(
-  //               desiredAccuracy: LocationAccuracy.lowest)
-  //           .whenComplete(() {
-  //         log("Accesed");
-  //       });
-  //       print(currentPosition);
-  //       List<Placemark> address = await placemarkFromCoordinates(
-  //           currentPosition.latitude, currentPosition.longitude);
-  //       log(address[0].locality.toString());
-  //     } on Exception catch (e) {
-  //       // TODO
-  //       log(e.toString());
-  //     }
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -283,10 +250,9 @@ class _DonatePetState extends State<DonatePet> {
                           height: 30,
                         ),
                   DropdownButton<String>(
-
                     isExpanded: true,
                     value: dropdownValue,
-                    items: <String>['Dog','bird', 'Cat', 'Cow', 'other']
+                    items: <String>['Dog', 'bird', 'Cat', 'Cow', 'other']
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
