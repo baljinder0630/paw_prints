@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/Post.dart';
 import 'package:paw_prints/Models/UserModel.dart';
+import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/postDetailPage.dart';
 
 class PageNoZero extends StatefulWidget {
@@ -100,8 +101,8 @@ Widget postWidget(context, PostModel postModel, UserModel usermodel) {
       children: [
         ListTile(
           leading: CircleAvatar(
-            backgroundImage: usermodel.avatar.toString() != ""
-                ? NetworkImage(usermodel.avatar.toString())
+            backgroundImage: postModel.createdByAvatar.toString() != ""
+                ? NetworkImage(postModel.createdByAvatar.toString())
                 : null,
             foregroundImage: usermodel.avatar == ""
                 ? AssetImage('assets/userImage.jpg')
