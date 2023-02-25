@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.paw_prints">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.GALLERY" />
    <application
         android:label="paw_prints"
         android:name="${applicationName}"

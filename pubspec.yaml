@@ -51,8 +51,7 @@ dependencies:
   geolocator: ^9.0.2
   geocoding: ^2.0.5
   animated_bottom_navigation_bar: ^1.1.0+1
-  flutter_awesome_buttons: ^1.1.0
-  flutter_signin_button: ^2.0.0
+  restart_app: ^1.1.0
 
 dev_dependencies:
   flutter_test:
