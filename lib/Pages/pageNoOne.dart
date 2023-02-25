@@ -1,5 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:paw_prints/Models/UserModel.dart';
+import 'package:paw_prints/Pages/PetDetail.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -107,8 +113,12 @@ class _PageZeroState extends State<PageNoOne> {
                           querySnapshot.docs[index].data()
                               as Map<String, dynamic>);
                       return InkWell(
-                        onTap: () {},
-                        child: petWidget(context, petModel, widget.userModel),
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: ((context) {
+                            return PetDetail(petModel: petModel);
+                          })));
+                        },
                       );
                     },
                   );
