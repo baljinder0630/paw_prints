@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/createprofilepage.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import 'loginpage.dart';
 
@@ -116,20 +115,19 @@ class _SignUpState extends State<SignUp> {
                     //       fontSize: 45,
                     //       fontWeight: FontWeight.bold,
                     //   ),
-                  GradientText(
-                  'Sign Up',
-                  style: TextStyle(
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  colors: [
-                    Colors.amber.shade800,
-                    Colors.amber.shade700,
-                    Colors.amber.shade600,
-                    Colors.amber.shade500
-                  ],
-                ),
-
+                    GradientText(
+                      'Sign Up',
+                      style: TextStyle(
+                        fontSize: 45.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      colors: [
+                        Colors.amber.shade800,
+                        Colors.amber.shade700,
+                        Colors.amber.shade600,
+                        Colors.amber.shade500
+                      ],
+                    ),
 
                     SizedBox(
                       height: 60,
@@ -288,7 +286,7 @@ class _SignUpState extends State<SignUp> {
                             gradient: LinearGradient(
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
-                              stops: [0.1,0.5,0.7,0.9],
+                              stops: [0.1, 0.5, 0.7, 0.9],
                               colors: [
                                 Colors.amber.shade800,
                                 Colors.amber.shade700,
