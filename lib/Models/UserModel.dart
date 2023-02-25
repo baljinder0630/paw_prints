@@ -3,10 +3,10 @@ import 'dart:ffi';
 class UserModel {
   String? uid;
   String? email;
-  String? username;
+  late String username;
   String? avatar;
 
-  UserModel({this.uid, this.email, this.username, this.avatar});
+  UserModel({this.uid, this.email, required this.username, this.avatar});
 
   UserModel.fromMap(Map<String, dynamic> map) {
     uid = map['uid'];

@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
+import 'package:paw_prints/Pages/Donation_page.dart';
+import 'package:paw_prints/Pages/ProfilePage.dart';
 import 'package:paw_prints/Pages/page0.dart';
 import 'package:paw_prints/main.dart';
 
@@ -47,7 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: FloatingActionButton(
               tooltip: "Want to donate Pet?",
               backgroundColor: Color.fromARGB(255, 236, 219, 67),
-              onPressed: (() {}),
+              onPressed: (() {
+                Navigator.push(context, MaterialPageRoute(builder: ((context) {
+                  return DonatePet(usermodel: FirebaseHelper.currentAppUser);
+                })));
+              }),
               child: Icon(Icons.add),
             ),
             floatingActionButtonLocation:
@@ -57,12 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
             //
             body: _bottomNavIndex == 0
                 ? PageZero(userModel: FirebaseHelper.currentAppUser)
-                : Container(
-                    child: Text(
-                      _bottomNavIndex.toString(),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                : _bottomNavIndex == 3
+                    ? ProfilePage(userModel: FirebaseHelper.currentAppUser)
+                    : Container(
+                        child: Text(
+                          _bottomNavIndex.toString(),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
             bottomNavigationBar: AnimatedBottomNavigationBar(
               activeColor: Color.fromARGB(255, 246, 231, 93),
               backgroundColor: Color.fromARGB(255, 59, 58, 58),

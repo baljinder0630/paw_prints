@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/HomePage.dart';
+import 'package:paw_prints/Pages/createprofilepage.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -55,6 +56,17 @@ class _LoginPage extends State<LoginPage> {
       log("Sucessfully login");
       FirebaseHelper.currentAppUser = await FirebaseHelper.getUserModelByID(
           credential.user!.uid.toString());
+      if (FirebaseHelper.currentAppUser.username == null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return CreateProfile(
+              firebaseUser: FirebaseAuth.instance.currentUser,
+              usermodel: FirebaseHelper.currentAppUser,
+            );
+          }),
+        );
+      }
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) {
@@ -219,13 +231,12 @@ class _LoginPage extends State<LoginPage> {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              boxShadow:[
+                              boxShadow: [
                                 BoxShadow(
                                   blurRadius: 40,
                                   blurStyle: BlurStyle.outer,
                                 )
-                              ]
-                          ),
+                              ]),
                           child: IconButton(
                             icon: Image.asset('assets/google.png'),
                             iconSize: 30,
@@ -236,13 +247,12 @@ class _LoginPage extends State<LoginPage> {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              boxShadow:[
+                              boxShadow: [
                                 BoxShadow(
                                   blurRadius: 40,
                                   blurStyle: BlurStyle.outer,
                                 )
-                              ]
-                          ),
+                              ]),
                           child: IconButton(
                             icon: Image.asset('assets/apple1.jpeg'),
                             iconSize: 30,
@@ -253,25 +263,22 @@ class _LoginPage extends State<LoginPage> {
                         Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              boxShadow:[
+                              boxShadow: [
                                 BoxShadow(
                                   blurRadius: 40,
                                   blurStyle: BlurStyle.outer,
                                 )
-                              ]
-                          ),
+                              ]),
                           child: IconButton(
                             icon: Image.asset('assets/facebook.png'),
                             iconSize: 30,
                             onPressed: () {},
                           ),
                         ),
-
                       ],
                     )
                   ],
                 ),
-
               )),
             ),
           ),

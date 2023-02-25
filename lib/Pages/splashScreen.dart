@@ -1,4 +1,7 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Pages/HomePage.dart';
+import 'package:paw_prints/Pages/createprofilepage.dart';
 import 'package:paw_prints/Pages/signuppage.dart';
 
 import '../models/firebaseHelper.dart';
@@ -28,9 +32,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void checkLoginState() async {
     User? currentUser = FirebaseAuth.instance.currentUser;
+
     if (currentUser != null) {
       UserModel? userModel =
-          await FirebaseHelper.getUserModelByID(currentUser.uid);
+          await FirebaseHelper.getUserModelByID(currentUser.uid).then((value) {
+        FirebaseHelper.currentAppUser = value;
+      });
+
+      if (userModel!.username == "")
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => CreateProfile(
+                      firebaseUser: currentUser,
+                      usermodel: userModel,
+                    ))));
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: ((context) => MyHomePage())));
     } else {
