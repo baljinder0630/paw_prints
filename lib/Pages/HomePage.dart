@@ -8,7 +8,7 @@ import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
 import 'package:paw_prints/Pages/ProfilePage.dart';
-import 'package:paw_prints/Pages/page0.dart';
+import 'package:paw_prints/Pages/successStories.dart';
 import 'package:paw_prints/main.dart';
 
 class MyHomePage extends StatefulWidget {
