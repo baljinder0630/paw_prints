@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
+import 'package:paw_prints/Pages/HomePage.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -54,6 +55,12 @@ class _LoginPage extends State<LoginPage> {
       log("Sucessfully login");
       FirebaseHelper.currentAppUser = await FirebaseHelper.getUserModelByID(
           credential.user!.uid.toString());
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return MyHomePage();
+        }),
+      );
     }
     _submitted = false;
 
@@ -115,7 +122,8 @@ class _LoginPage extends State<LoginPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
                                 ),
-                                borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor)),
                           ),
                         )),
                     SizedBox(
@@ -156,7 +164,8 @@ class _LoginPage extends State<LoginPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(80.0),
                                 ),
-                                borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor)),
                           ),
                         )),
                     SizedBox(
