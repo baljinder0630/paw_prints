@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -32,13 +30,14 @@ class _PageZeroState extends State<PageNoOne> {
         onPressed: (() {}),
         child: Icon(Icons.location_searching_rounded),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.only(left:10.0 ,right: 80.0),
                 child: DropdownButton<String>(
                   alignment: Alignment.center,
                   isExpanded: true,
