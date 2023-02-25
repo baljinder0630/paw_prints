@@ -209,9 +209,69 @@ class _LoginPage extends State<LoginPage> {
                             },
                             child: Text("Sign Up"))
                       ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 45)),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:[
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  blurStyle: BlurStyle.outer,
+                                )
+                              ]
+                          ),
+                          child: IconButton(
+                            icon: Image.asset('assets/google.png'),
+                            iconSize: 30,
+                            onPressed: () {},
+                          ),
+                        ),
+                        Padding(padding: EdgeInsets.only(left: 20)),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:[
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  blurStyle: BlurStyle.outer,
+                                )
+                              ]
+                          ),
+                          child: IconButton(
+                            icon: Image.asset('assets/apple1.jpeg'),
+                            iconSize: 30,
+                            onPressed: () {},
+                          ),
+                        ),
+                        Padding(padding: EdgeInsets.only(left: 20)),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:[
+                                BoxShadow(
+                                  blurRadius: 40,
+                                  blurStyle: BlurStyle.outer,
+                                )
+                              ]
+                          ),
+                          child: IconButton(
+                            icon: Image.asset('assets/facebook.png'),
+                            iconSize: 30,
+                            onPressed: () {},
+                          ),
+                        ),
+
+                      ],
                     )
                   ],
                 ),
+
               )),
             ),
           ),

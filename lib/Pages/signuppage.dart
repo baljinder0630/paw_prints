@@ -5,10 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_buttons/flutter_awesome_buttons.dart';
-import 'package:flutter_signin_button/button_builder.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Pages/createprofilepage.dart';
 
@@ -332,7 +328,7 @@ class _SignUpState extends State<SignUp> {
                                 ]
                             ),
                           child: IconButton(
-                            icon: Image.asset('assets/apple.png'),
+                            icon: Image.asset('assets/apple1.jpeg'),
                             iconSize: 30,
                             onPressed: () {},
                           ),
