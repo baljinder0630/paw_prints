@@ -137,10 +137,29 @@ class _AddPostState extends State<AddPost> {
                   Image.file(_imageFile!),
                   const SizedBox(height: 16),
                 ],
-                ElevatedButton.icon(
-                  onPressed: _getImage,
-                  icon: const Icon(Icons.photo),
-                  label: const Text('Choose a photo'),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.amber.shade800,
+                        Colors.amber.shade700,
+                        Colors.amber.shade600,
+                        Colors.amber.shade500
+                      ]
+                    ),
+                  ),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                      onSurface: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      //make color or elevated button transparent
+                    ),
+                    onPressed: _getImage,
+                    icon: const Icon(Icons.photo),
+                    label: const Text('Choose a photo'),
+
+                  ),
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
@@ -157,11 +176,29 @@ class _AddPostState extends State<AddPost> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: _isUploading ? null : _uploadPost,
-                  child: _isUploading
-                      ? const CircularProgressIndicator()
-                      : const Text('Upload'),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.amber.shade800,
+                          Colors.amber.shade700,
+                          Colors.amber.shade600,
+                          Colors.amber.shade500
+                        ]
+                    ),
+                  ),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                      onSurface: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      //make color or elevated button transparent
+                    ),
+                    onPressed: _isUploading ? null : _uploadPost,
+                    child: _isUploading
+                        ? const CircularProgressIndicator()
+                        : const Text('Upload'),
+                  ),
                 ),
               ],
             ),
