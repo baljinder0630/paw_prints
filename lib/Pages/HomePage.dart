@@ -29,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, snapshot) {
           return Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               automaticallyImplyLeading: false,
               actions: [
                 IconButton(
@@ -49,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //
             floatingActionButton: FloatingActionButton(
               tooltip: "Want to donate Pet?",
-              backgroundColor: Color.fromARGB(255, 236, 219, 67),
+              backgroundColor: Theme.of(context).primaryColor,
               onPressed: (() {
                 Navigator.push(context, MaterialPageRoute(builder: ((context) {
                   return DonatePet(usermodel: widget.userModel);
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
             bottomNavigationBar: AnimatedBottomNavigationBar(
-              activeColor: Color.fromARGB(255, 246, 231, 93),
+              activeColor: Theme.of(context).primaryColor,
               backgroundColor: Color.fromARGB(255, 59, 58, 58),
               height: 60,
               icons: [
