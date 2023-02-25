@@ -1,16 +1,14 @@
 // ignore_for_file: prefer_const_constructors
-import 'dart:developer';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:paw_prints/Models/UserModel.dart';
-import 'package:paw_prints/Pages/PetDetail.dart';
+import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
+import 'package:paw_prints/Pages/PetDetail.dart';
+
 import '../Models/petModel.dart';
 
 class PageNoOne extends StatefulWidget {
@@ -23,8 +21,6 @@ class PageNoOne extends StatefulWidget {
 }
 
 class _PageZeroState extends State<PageNoOne> {
-  String? dropdownValue = 'Dog';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,60 +29,6 @@ class _PageZeroState extends State<PageNoOne> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Container(
-                  height: 40,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Theme.of(context).primaryColor,
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      stops: [0.1, 0.5, 0.7, 0.9],
-                      colors: [
-                        Colors.amber.shade800,
-                        Colors.amber.shade700,
-                        Colors.amber.shade600,
-                        Colors.amber.shade500
-                      ],
-                    ),
-                  ),
-                  child: Center(
-                      child: Text(
-                    "Search in nearby location",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15),
-                  )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: DropdownButton<String>(
-                  alignment: Alignment.center,
-                  isExpanded: true,
-                  value: dropdownValue,
-                  items: <String>['Dog', 'Cat', 'Cow', 'other']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15, color: Colors.white),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue;
-                    });
-                  },
-                ),
-              ),
               StreamBuilder<QuerySnapshot>(
                 stream:
                     FirebaseFirestore.instance.collection("Pets").snapshots(),
@@ -119,11 +61,12 @@ class _PageZeroState extends State<PageNoOne> {
                             return PetDetail(petModel: petModel);
                           })));
                         },
+                        child: petWidget(context, petModel, widget.userModel),
                       );
                     },
                   );
                 },
-              ),
+              )
             ],
           ),
         ),
@@ -164,7 +107,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color: Colors.black),
                 ),
               )),
           Container(
@@ -231,7 +174,7 @@ Widget petWidget(context, PetModel petModel, UserModel userModel) {
             backgroundColor: Colors.blue.shade300,
             title: Text(
               "Description",
-              style: TextStyle(fontSize: 15, color: Colors.white),
+              style: TextStyle(fontSize: 15, color: Colors.black),
             ),
             expandedAlignment: Alignment.topLeft,
             children: [
