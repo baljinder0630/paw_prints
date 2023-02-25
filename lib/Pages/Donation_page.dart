@@ -49,15 +49,7 @@ class _DonatePetState extends State<DonatePet> {
                 CropAspectRatioPreset.square,
               ],
               cropStyle: CropStyle.rectangle
-              // androidUiSettings: AndroidUiSettings(
-              //     toolbarTitle: 'Cropper',
-              //     toolbarColor: Colors.deepOrange,
-              //     toolbarWidgetColor: Colors.white,
-              //     initAspectRatio: CropAspectRatioPreset.original,
-              //     lockAspectRatio: false),
-              // iosUiSettings: IOSUiSettings(
-              //   minimumAspectRatio: 1.0,
-              // )
+         
               )
           .then((value) {
             log("Done")

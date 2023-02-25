@@ -3,10 +3,12 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/HomePage.dart';
 
 class CreateProfile extends StatefulWidget {
@@ -39,20 +41,34 @@ class _CreateProfileState extends State<CreateProfile> {
   void imagecrop(XFile BeforeCrop) async {
     log("message1");
     if (BeforeCrop != null) {
-      File? FinalImage = await ImageCropper()
-          .cropImage(
-              sourcePath: BeforeCrop.path,
-              aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-              compressQuality: 20)
-          .then((value) {
-        log("Done");
+      File? FinalImage = await ImageCropper().cropImage(
+        sourcePath: BeforeCrop.path,
+        compressQuality: 20,
+        aspectRatioPresets: [
+          CropAspectRatioPreset.square,
+          CropAspectRatioPreset.ratio3x2,
+          CropAspectRatioPreset.original,
+          CropAspectRatioPreset.ratio4x3,
+          CropAspectRatioPreset.ratio16x9
+        ],
+        // androidUiSettings : [
+        //   AndroidUiSettings(
+        //       toolbarTitle: 'Cropper',
+        //       toolbarColor: Colors.deepOrange,
+        //       toolbarWidgetColor: Colors.white,
+        //       initAspectRatio: CropAspectRatioPreset.original,
+        //       lockAspectRatio: false),
+        //   IOSUiSettings(
+        //     title: 'Cropper',
+        //   ),
+        //   WebUiSettings(
+        //     context: context,
+        //   ),
+        // ],
+      );
+      setState(() {
+        UserFinalImage = FinalImage;
       });
-
-      if (FinalImage != null) {
-        setState(() {
-          UserFinalImage = FinalImage;
-        });
-      }
     }
   }
 
@@ -73,6 +89,9 @@ class _CreateProfileState extends State<CreateProfile> {
         .collection("User")
         .doc(widget.firebaseUser)
         .set(widget.usermodel.toMap())
+        .whenComplete(() {
+          FirebaseHelper.currentAppUser = widget.firebaseUser;
+        })
         .onError((error, stackTrace) => showDialog(
             context: context,
             builder: (context) {
@@ -91,11 +110,12 @@ class _CreateProfileState extends State<CreateProfile> {
               );
             }))
         .then((value) {
-      log("user sucessfully created");
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return MyHomePage();
-      }));
-    });
+          log("user sucessfully created");
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) {
+            return MyHomePage();
+          }));
+        });
   }
 
   //
@@ -170,7 +190,7 @@ class _CreateProfileState extends State<CreateProfile> {
                   prefixIcon: Icon(Icons.person),
                   hintText: "UserName",
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Colors.black,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(80.0),

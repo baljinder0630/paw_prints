@@ -50,7 +50,7 @@ dependencies:
   geolocator: ^9.0.2
   geocoding: ^2.0.5
   animated_bottom_navigation_bar: ^1.1.0+1
-  image_cropper: ^3.0.1
+  image_cropper: ^1.5.0
 
 dev_dependencies:
   flutter_test:
