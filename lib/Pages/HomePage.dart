@@ -39,11 +39,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
       //
       //
-      floatingActionButton: FloatingActionButton(
-        tooltip: "Donate pet",
-        backgroundColor: Color.fromARGB(255, 236, 219, 67),
-        onPressed: (() {}),
-        child: Icon(Icons.add),
+       floatingActionButton: FloatingActionButton(
+         tooltip: "Donate pet",
+         backgroundColor: Color.fromARGB(255, 236, 219, 67),
+         onPressed: (() {}),
+         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 

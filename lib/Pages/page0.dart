@@ -56,14 +56,6 @@ class _PageZeroState extends State<PageZero> {
                   ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return DonatePet(usermodel: widget.userModel);
-                  }));
-                },
-                child: Text("Donate pet"),
-              ),
               StreamBuilder<QuerySnapshot>(
                 stream:
                     FirebaseFirestore.instance.collection("Pets").snapshots(),
