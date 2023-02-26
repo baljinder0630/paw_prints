@@ -4,10 +4,12 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:paw_prints/Models/Application.dart';
 import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/chatroomModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Models/petModel.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:uuid/uuid.dart';
 
 import 'Chatroom.dart';
@@ -78,7 +80,22 @@ class _BuyPageState extends State<PetDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+            centerTitle: true,
+            title: GradientText(
+              'Details',
+              style: TextStyle(
+                fontSize: 25,
+              ),
+              colors: [
+                Colors.amber.shade800,
+                Colors.amber.shade700,
+                Colors.amber.shade600,
+                Colors.amber.shade500
+              ],
+            ),
+          ),
+
         body: Stack(
           children: [
             SingleChildScrollView(
@@ -130,15 +147,23 @@ class _BuyPageState extends State<PetDetail> {
                               color: Colors.amber.shade400,
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2,
-                            color: Colors.amber.shade800,
-                            child: Center(
-                                child: Text("Buy",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        color: Colors.white))),
+                          InkWell(
+                            onTap: (() {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: ((context) {
+                                return ApplicationPage();
+                              })));
+                            }),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              color: Colors.amber.shade800,
+                              child: Center(
+                                  child: Text("Buy",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.white))),
+                            ),
                           )
                         ],
                       ),

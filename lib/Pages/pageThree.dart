@@ -16,6 +16,7 @@ class _PageTwoState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -126,7 +127,6 @@ class _PageTwoState extends State<ProfilePage> {
                         height: 130,
                         width: double.infinity,
                         child: StreamBuilder(
-              
                           stream: FirebaseFirestore.instance
                               .collection("Pets")
                               .where("likedBy",

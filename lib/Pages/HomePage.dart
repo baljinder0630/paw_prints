@@ -8,6 +8,7 @@ import 'package:paw_prints/Models/UserModel.dart';
 import 'package:paw_prints/Models/firebaseHelper.dart';
 import 'package:paw_prints/Pages/AddPost.dart';
 import 'package:paw_prints/Pages/Donation_page.dart';
+import 'package:paw_prints/Pages/allChats.dart';
 import 'package:paw_prints/Pages/editProfile.dart';
 import 'package:paw_prints/Pages/pageNoOne.dart';
 import 'package:paw_prints/Pages/pageThree.dart';
@@ -33,27 +34,47 @@ class _MyHomePageState extends State<MyHomePage> {
         stream: navBarStream.stream,
         builder: (context, snapshot) {
           return Scaffold(
-            appBar: AppBar(
-              actions: [
-                if (_bottomNavIndex == 3) ...[
-                  IconButton(onPressed: () {}, icon: Icon(Icons.settings))
-                ]
-              ],
-              centerTitle: true,
-              automaticallyImplyLeading: false,
-              title: GradientText(
-                'Paw Prints',
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-                colors: [
-                  Colors.amber.shade800,
-                  Colors.amber.shade700,
-                  Colors.amber.shade600,
-                  Colors.amber.shade500
+            appBar:
+            AppBar(
+                actions: [
+                  if (_bottomNavIndex == 3) ...[
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return SettingPage();
+                          }));
+                        },
+                        icon: Icon(Icons.settings))
+                  ]
                 ],
-              )
-            ),
+                centerTitle: true,
+                automaticallyImplyLeading: false,
+                title: _bottomNavIndex != 2
+                    ? GradientText(
+                        'Paw Prints',
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
+                        colors: [
+                          Colors.amber.shade800,
+                          Colors.amber.shade700,
+                          Colors.amber.shade600,
+                          Colors.amber.shade500
+                        ],
+                      )
+                    : GradientText(
+                        'Chats',
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
+                        colors: [
+                          Colors.amber.shade800,
+                          Colors.amber.shade700,
+                          Colors.amber.shade600,
+                          Colors.amber.shade500
+                        ],
+                      )),
 
             //
             //
@@ -120,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 : _bottomNavIndex == 1
                     ? PageNoOne(userModel: widget.userModel)
                     : _bottomNavIndex == 2
-                        ? SettingPage()
+                        ? AllChats()
                         : ProfilePage(userModel: widget.userModel),
             bottomNavigationBar: AnimatedBottomNavigationBar(
               activeColor: Theme.of(context).primaryColor,
@@ -129,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icons: [
                 CupertinoIcons.home,
                 CupertinoIcons.paw,
-                CupertinoIcons.settings,
+                CupertinoIcons.chat_bubble_2_fill,
                 CupertinoIcons.profile_circled
               ],
               activeIndex: _bottomNavIndex,

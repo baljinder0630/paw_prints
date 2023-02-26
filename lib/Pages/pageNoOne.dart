@@ -24,91 +24,98 @@ class _PageZeroState extends State<PageNoOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Theme.of(context).primaryColorLight,
-      //   tooltip: "Search in nearby location",
-      //   onPressed: (() {}),
-      //   child: Icon(Icons.location_searching_rounded),
-      // ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: DropdownButton<String>(
-                  alignment: Alignment.center,
-                  isExpanded: true,
-                  value: dropdownValue,
-                  items: <String>['Select', 'Dog', 'Cat', 'Cow', 'other']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15, color: Colors.white),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue;
-                    });
-                  },
-                ),
-              ),
-              TextButton(
-                onPressed: (){},
-                 child: Container(height: 40, width: 50, decoration: BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.circular(8.0)),child: Icon(Icons.location_searching_rounded, color: Colors.black,)),
-              ),
-              StreamBuilder<QuerySnapshot>(
-                stream: dropdownValue == 'Select'
-                    ? FirebaseFirestore.instance.collection("Pets").snapshots()
-                    : FirebaseFirestore.instance
-                        .collection("Pets")
-                        .where("category", isEqualTo: dropdownValue)
-                        .snapshots(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasError) {
-                    return Center(
-                      child: Text('Error: ${snapshot.error}'),
-                    );
-                  }
-
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-
-                  QuerySnapshot querySnapshot = snapshot.data as QuerySnapshot;
-                  return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: querySnapshot.docs.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      PetModel petModel = PetModel.fromMap(
-                          querySnapshot.docs[index].data()
-                              as Map<String, dynamic>);
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: ((context) {
-                            return PetDetail(
-                                userModel: widget.userModel,
-                                petModel: petModel);
-                          })));
-                        },
-                        child: petWidget(context, petModel, widget.userModel),
+      floatingActionButton: Container(
+        padding: EdgeInsets.only(top: 8.0),
+        child: FloatingActionButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          backgroundColor: Colors.amber,
+          tooltip: "Search in nearby location",
+          onPressed: (() {}),
+          child: Icon(Icons.location_searching_rounded),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 80.0),
+                  child: DropdownButton<String>(
+                    alignment: Alignment.center,
+                    isExpanded: true,
+                    value: dropdownValue,
+                    items: <String>['Select', 'Dog', 'Cat', 'Cow', 'other']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        ),
                       );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                      });
                     },
-                  );
-                },
-              )
-            ],
+                  ),
+                ),
+                StreamBuilder<QuerySnapshot>(
+                  stream: dropdownValue == 'Select'
+                      ? FirebaseFirestore.instance
+                          .collection("Pets")
+                          .snapshots()
+                      : FirebaseFirestore.instance
+                          .collection("Pets")
+                          .where("category", isEqualTo: dropdownValue)
+                          .snapshots(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text('Error: ${snapshot.error}'),
+                      );
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+
+                    QuerySnapshot querySnapshot =
+                        snapshot.data as QuerySnapshot;
+                    return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: querySnapshot.docs.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        PetModel petModel = PetModel.fromMap(
+                            querySnapshot.docs[index].data()
+                                as Map<String, dynamic>);
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: ((context) {
+                              return PetDetail(
+                                  userModel: widget.userModel,
+                                  petModel: petModel);
+                            })));
+                          },
+                          child: petWidget(context, petModel, widget.userModel),
+                        );
+                      },
+                    );
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -22,6 +22,7 @@ class _PageOneState extends State<PageNoZero> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Container(
           child: Column(
             children: [
