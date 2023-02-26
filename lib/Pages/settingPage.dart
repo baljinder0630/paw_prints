@@ -15,7 +15,8 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Container(
           child: SettingsList(
             brightness: Brightness.dark,
@@ -33,18 +34,18 @@ class _SettingPageState extends State<SettingPage> {
                     value: Text('English'),
                   ),
                   SettingsTile.switchTile(
-                    initialValue: true,
+                    initialValue: toggleValue,
                     onToggle: (value) {
-                      toggleValue = value;
                       setState(() {
-                        toggleValue;
+                        toggleValue = value;
+                        // toggleValue = !toggleValue;
                       });
                     },
-                    onPressed: (contex) {
-                      setState(() {
-                        toggleValue;
-                      });
-                    },
+                    // onPressed: (contex) {
+                    //   setState(() {
+                    //     toggleValue = !toggleValue;
+                    //   });
+                    // },
                     //initialValue: toggleValue,
                     leading: Icon(Icons.format_paint),
                     title: Text('Enable custom theme'),
@@ -68,6 +69,6 @@ class _SettingPageState extends State<SettingPage> {
           ),
         ),
       ),
-      );
+    );
   }
 }
