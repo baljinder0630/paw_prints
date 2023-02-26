@@ -24,31 +24,20 @@ class _PageZeroState extends State<PageNoOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Container(
-        padding: EdgeInsets.only(top: 8.0),
-        child: FloatingActionButton(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          backgroundColor: Colors.amber,
-          tooltip: "Search in nearby location",
-          onPressed: (() {}),
-          child: Icon(Icons.location_searching_rounded),
-        ),
-      ),
       // floatingActionButton: FloatingActionButton(
       //   backgroundColor: Theme.of(context).primaryColorLight,
       //   tooltip: "Search in nearby location",
       //   onPressed: (() {}),
       //   child: Icon(Icons.location_searching_rounded),
       // ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 80.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: DropdownButton<String>(
                   alignment: Alignment.center,
                   isExpanded: true,
@@ -70,6 +59,10 @@ class _PageZeroState extends State<PageNoOne> {
                     });
                   },
                 ),
+              ),
+              TextButton(
+                onPressed: (){},
+                 child: Container(height: 40, width: 50, decoration: BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.circular(8.0)),child: Icon(Icons.location_searching_rounded, color: Colors.black,)),
               ),
               StreamBuilder<QuerySnapshot>(
                 stream: dropdownValue == 'Select'
