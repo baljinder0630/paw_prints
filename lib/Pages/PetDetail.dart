@@ -108,13 +108,31 @@ class _BuyPageState extends State<PetDetail> {
                             child:
                                 Image.network(widget.petModel.pic.toString()))),
                     Text(widget.petModel.name.toString(),
-                        style: TextStyle(color: Colors.grey)),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                        )),
                     Text(widget.petModel.description.toString(),
-                        style: TextStyle(color: Colors.grey)),
-                    Text(widget.petModel.dob.toString(),
-                        style: TextStyle(color: Colors.grey)),
-                    Text(widget.petModel.sellingBy.toString(),
-                        style: TextStyle(color: Colors.grey)),
+                        style: TextStyle(color: Colors.grey,
+                               fontWeight: FontWeight.w400,
+                               fontSize: 10
+                        )),
+                    Text(DateTime.now()
+                        .difference(
+                        DateTime.tryParse(widget.petModel.dob.createdTime.toString())!)
+                        .inDays as String,
+                        style: TextStyle(color: Colors.grey,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 20)),
+                    // Text(widget.petModel.dob.toString(),
+                    //     style: TextStyle(color: Colors.grey,
+                    //         fontWeight: FontWeight.w400,
+                    //         fontSize: 20)),
+                    // Text(widget.petModel.sellingBy.toString(),
+                    //     style: TextStyle(color: Colors.grey,
+                    //         fontWeight: FontWeight.w400,
+                    //         fontSize: 20)),
                   ],
                 ),
               ),
